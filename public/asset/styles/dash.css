@@ -1,0 +1,148 @@
+
+        main{
+            margin: 30px 0;
+        }
+        main > h3{
+            font-size: 45px;
+            font-weight: 700;
+            text-align: center;
+        }
+        main ul{
+            width: 700px;
+            margin: 10px auto;
+            border: 1px solid#F2F2F2;
+            background-color: #E5E5E5;
+            display: flex;
+            justify-content: space-evenly;
+        transition: all 0.3s ease-in;
+
+        }
+        main li{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #c4c4c4;
+            padding: 20px 15px;
+            width: 100%;
+        transition: all 0.3s ease-in;
+
+        }
+        main li .detail-item{
+            text-align: center;
+            margin: 0 15px;
+        }
+        
+    main li p{
+        font-size: 14px;
+    }
+    main li span{
+        font-size: 12px;
+    }
+    .hidden{
+       display: none;
+    }
+    .track-order p {
+       position: relative;
+       text-align: center;
+       margin: 30px 0;
+       cursor: pointer;
+    }
+    .track-order p::after{
+        content: url('/assets/images/dashboard/chevron-down.png');
+        position: absolute;
+        /* right:0 ; */
+        /* transform: translateX(-15px); */
+        top: 0;
+        width: 5%;
+        height: 100%;
+        display: inline-block;
+    }
+    .track-progress{
+        width: 800px;
+        margin: 10px auto;
+        border: 1px solid #C4C4C4;
+        border-radius: 15px;
+        padding: 20px 15px;
+        transition: all 0.3s ease-in;
+    }
+    .track-progress progress{
+        width: 100%;
+        margin: 10px 0;
+        background-color: #E5E5E5;
+        border: none;
+        border-radius: 15px;
+    }
+    .progress-info{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+  
+ progress{
+     position: relative;
+     display: inline-block;
+     -moz-appearance: none;
+     -webkit-appearance: none;
+     background-color: transparent;
+     appearance: none;
+ }
+ ::-webkit-progress-inner-element {
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: transparent;
+}
+ progress::before{
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     background-color: #EE6624;
+     z-index: 10;
+     display: inline-block;
+     width: 32%;
+     height: 100%;
+     border-radius: 15px;
+ }
+    progress[value]::-moz-progress-bar,
+    progress[value]::-webkit-progress-value,
+    progress::-webkit-progress-value{
+        background-color: #EE6624;
+        color: #EE6624;
+        border-radius: 15px;
+    }
+    .progress-info span{
+        color: #c4c4c4;
+    }
+    .status{
+        color: #FF0707;
+    }
+    main+aside{
+        text-align: center;
+    }
+    main+aside a{
+        text-decoration: none;
+        color:  #F10D0D;
+        display: block;
+        margin: 50px 0;
+    }
+    @media screen and (max-width:810px){
+        main > h3{
+            font-size: 30px;
+        }
+        .track-order{
+            padding: 5px 15px;
+        }
+        .track-progress{
+            width: auto;
+        }
+        .progress-info span{
+            font-size: 14px;
+        }
+        main>section{
+            padding: 0 10px;
+        }
+        main ul{
+            width: auto;
+            flex-direction: column;
+        }
+    }

@@ -1,0 +1,53 @@
+textarea{
+    width: 100%;
+}
+h3{
+    font-weight: inherit;
+    font-size: 16px;
+    margin: 20px 0;
+}
+main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.2s ease-in;
+}
+main li{
+    display: flex;
+    margin: 10px 0;
+}
+main li div{
+    margin-right: 10px;
+}
+main li span{
+    display: inline-block;
+    margin-right: 15px;
+}
+.contact-details{
+    transform: translateY(-65px);
+    transition: all 0.2s ease-in;
+}
+@media screen and (max-width:880px){
+    h2{
+        margin: 20px 0 10px 0;
+    }
+    main{
+        display: block;
+    }
+    .map-area{
+        margin: 10px 0;
+    }
+    .map-area img{
+        width: 100%;
+    }
+    section{
+        margin: 25px 0;
+    }
+    .form{
+        padding: 0;
+    }
+    .contact-details{
+        transform: translate(0);
+    }
+}

@@ -1,0 +1,211 @@
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+:root {
+  --text-color: #18191F;
+  --text-color-2: #231D4F;
+  --text-color-3: #848199;
+  --text-color-3: #9CA0AC;
+  --text-color-4: #333333;
+  --primary-color: #FF7900;
+  --primary-color-light: #FFEFE0;
+  --secondary-color: #FFEFE0;
+  --white-color: #FFFFFF;
+  --dark-color: #0B0500;
+  --card-shadow: 0px 0px 5px 2px rgba(105, 21, 21, 0.27);
+  --card-shadow-2: 0px 0px 8px 4px rgba(105, 21, 21, 0.1);
+}
+.sheet{
+    width:80%;
+    margin:auto;
+    padding:20px 20px;
+    
+  box-shadow: var(--card-shadow);
+  border-radius:2px;
+}
+a.btn{
+  margin:0;
+}
+
+.track-btn {
+  margin:1rem 0;
+  padding:1px 5px;
+  color:white;
+  text-transform: uppercase;
+  border-radius:2px;
+  font-weight: 500;
+  font-size: .875rem;
+
+}
+
+.btn-warning{background-color:var(--primary-color) ;}
+.btn-success{background-color:#5cb85c;}
+.btn-danger{background-color: #d9534f;}
+
+
+.memorial-view__left {
+  flex: 0 0 65%;
+}
+.memorial-view__right {
+  flex: 1;
+}
+.memorial-view__contain {
+  margin-top: 2rem;
+}
+
+.story-card {
+  width:80%;
+  height:170;
+  box-shadow: var(--card-shadow);
+  border-radius: 1rem;
+  margin:auto;
+  margin-bottom: 3rem;
+}
+.story-card__memory-contain {
+  border-bottom: 0.5px solid #C4C4C4;
+}
+.story-card__body {
+  padding: 2.5em 3rem;
+}
+.story-card__body-no-image {
+  padding: 3rem 2rem;
+}
+.story-card__body-story {
+  display: flex;
+}
+.story-card__body-left {
+  width: 20%;
+  overflow: hidden;
+  box-sizing: content-box;
+  padding: 1.2rem;
+}
+.story-card__body-right {
+  width: 80%;
+  padding: 1rem;
+}
+.story-card__story-img {
+  width: 100%;
+  height: 10.5rem;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.story-card__memory {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  padding: 1em 2em;
+}
+.story-card__memory-of {
+  color: var(--text-color-3);
+}
+.story-card__memory-img {
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 50%;
+}
+.story-card__header {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.story-card__more-menu-img {
+  position: absolute;
+  top: 65%;
+  right: -25%;
+  background: var(--white-color);
+  border-radius: 6px;
+  box-shadow: var(--card-shadow);
+}
+.story-card__more-no-img {
+  position: absolute;
+  top: 65%;
+  right: -17%;
+  background: var(--white-color);
+  border-radius: 6px;
+  box-shadow: var(--card-shadow);
+}
+.story-card__more-menu-option {
+  font-size: 1.5rem;
+  padding: 1em 1.2em;
+}
+.story-card__more-menu-option:not(:last-child) {
+  border-bottom: 1px solid #C4C4C4;
+}
+.story-card__more-menu-option-2 {
+  font-size: 1.5rem;
+  padding: 1em 1.2em;
+}
+.story-card__more-menu-option-2:not(:last-child) {
+  border-bottom: 1px solid #C4C4C4;
+}
+.story-card__initials {
+  width: 5rem;
+  height: 5rem;
+  font-size: 1.5rem;
+  color: var(--white-color);
+  background-color: #171819;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.story-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 2.5rem;
+}
+
+.story-card__date {
+  font-size: 1rem;
+  color: #9CA0AC;
+  align-self: flex-start;
+}
+
+
+.memorial-card-content {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+a{
+  
+  text-decoration:none;
+}
+
+.memorial-card-button {
+  border: none;
+  
+  text-decoration:none;
+  background: transparent;
+  font-size: 1rem;
+  color: var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+.header{
+    border-bottom:1px ;
+    border-bottom-color:rgba(128, 128, 128, 0.172) ;
+    border-bottom-style:solid ;
+}
+.order-meta{
+    width:90%;
+    margin:auto;
+    
+    border-bottom:1px ;
+    border-bottom-color:rgba(128, 128, 128, 0.172) ;
+    border-bottom-style:solid ;
+}
+p{
+    margin:1px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+@media screen and (max-width: 480px) {
+.flex-container {
+    flex-direction: column;
+  } 
+}
