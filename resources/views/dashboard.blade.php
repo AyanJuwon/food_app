@@ -62,8 +62,11 @@
 
                                 <div class="tab-pane fade" id="tab-orders" role="tabpanel"
                                     aria-labelledby="tab-orders-link">
+                                    @if($orders_count > 0)
                                     @include('orders')
+                                    @else
                                     <p>No order has been made yet.</p>
+                                    @endif
                                     <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
                                             class="icon-long-arrow-right"></i></a>
                                 </div><!-- .End .tab-pane -->

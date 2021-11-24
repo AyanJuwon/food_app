@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 
+use App\Models\Orders;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class UserController extends Controller
@@ -110,17 +112,18 @@ class UserController extends Controller
 
 
      public function dashboard(){
- $orders = Orders::where('user_id',auth()->user()->id)->get();
-         $categories = Category::all();
-
+            $orders = Orders::where('user_id',auth()->user()->id)->get();
+             $categories = Category::all();
+        
+            $orders_count = Orders::where('user_id',auth()->user()->id)->count();
 
 
 
 
 
          
-        return view('orders')
-        ->with('orders',$orders)->with('categories',$categories);
+        return view('dashboard')
+        ->with('orders',$orders)->with('categories',$categories)->with('orders_count',$orders_count);
         
      }
     public function orders(){
@@ -139,11 +142,11 @@ class UserController extends Controller
             return back()->withErrors('You do not have access to this!');
         }
          $categories = Category::all();
-       $ordermenus =  Ordermenu::where('order_id',$order->id)->get();
- $order_id = $order->id;
- $order = $order;
+        $orderDetails =  OrderDetail::where('order_id',$order->id)->get();
+        $order_id = $order->id;
+        $order = $order;
         return view('my-order')->with([
-            'ordermenus' => $ordermenus,
+            'orderDetails' => $orderDetails,
             'order_id'=> $order_id,
             'order'=> $order,
             'categories' => $categories

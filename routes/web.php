@@ -80,7 +80,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'dashboard'])->name('dashboard');
 
-    Route::get('/orders', [App\Http\Controllers\UserController::class ,'orders'])->name('orders');
+    // Route::get('/orders', [App\Http\Controllers\UserController::class ,'orders'])->name('orders');
 
     Route::get('my-order/{order}', [App\Http\Controllers\UserController::class , 'viewOrderDetails'])->name('myOrder');
 
