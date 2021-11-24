@@ -20,13 +20,13 @@
 
                     </div><!-- End .toolbox-right -->
                 </div><!-- End .toolbox -->
-               
+
                 @foreach ($menus as $menu)
- @if(!$menu)
+                    @if (!$menu)
 
- No item in this category
+                        No item in this category
 
- @endif
+                    @endif
                     <div class="products">
                         <div class="row">
                             <div class="col-6 col-md-4 col-lg-4 col-xl-3">
@@ -67,7 +67,7 @@
                                         </h3>
                                         <!-- End .product-title -->
                                         <div class="product-price">
-                                            $50.00
+                                            ${{ $menu->menu_price }}
                                         </div><!-- End .product-price -->
                                         {{-- <div class="ratings-container">
                                         <div class="ratings">

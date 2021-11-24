@@ -1,0 +1,95 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class OrdersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        //
+     // Insert into orders table
+        $order = Order::create([
+             'user_id' => null,
+            'total' => ,
+            'quantity' => 2,
+            'address' => 'Fake Address',
+            'phoneNumber'=>'9052145636',
+            'payment_id' =>,
+            'email'=>  'email@email.com',
+            'shipped' => true,
+            'error' => null,
+        ]);
+
+        // Insert into order_product table
+        OrderDetail::create([
+            'order_id' => $order->id,
+            'menu_id' => 1,
+            'quantity' => 1,
+        ]);
+
+        OrderDetail::create([
+            'order_id' => $order->id,
+            'menu_id' => 2,
+            'quantity' => 1,
+        ]);
+
+        // Insert into orders table
+        $order2 = Order::create([
+              'user_id' => null,
+            'total' => ,
+            'quantity' => 2,
+            'address' => 'Fake Address',
+            'phoneNumber'=>'9052145636',
+            'payment_id' =>,
+            'email'=>  'email@email.com',
+            'shipped' => true,
+            'error' => null,
+        ]);
+
+        // Insert into order_product table
+        OrderDetail::create([
+            'order_id' => $order2->id,
+            'menu_id' => 3,
+            'quantity' => 1,
+        ]);
+
+        OrderDetail::create([
+            'order_id' => $order2->id,
+            'menu_id' => 4,
+            'quantity' => 1,
+        ]);
+
+        // Insert into orders table
+        $order3 = Order::create([
+            'user_id' => null,
+            'total' => ,
+            'quantity' => 2,
+            'address' => 'Fake Address',
+            'phoneNumber'=>'9052145636',
+            'payment_id' =>,
+            'email'=>  'email@email.com',
+            'shipped' => true,
+            'error' => null,
+        ]);
+
+        // Insert into order_product table
+        OrderDetail::create([
+            'order_id' => $order3->id,
+            'menu_id' => 5,
+            'quantity' => 1,
+        ]);
+
+        OrderDetail::create([
+            'order_id' => $order3->id,
+            'menu_id' => 6,
+            'quantity' => 1,
+        ]);
+    }
+}

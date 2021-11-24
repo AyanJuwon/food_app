@@ -22,18 +22,17 @@
             <div class="page-content">
             	<div class="checkout">
 	                <div class="container">
-            			<form action="#">
+            			<form action="#" id="delivery-form">
 		                	<div class="row">
 		                		<div class="col-lg-9">
 		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
 		                				<div class="row">
 	            						<label>Street address *</label>
-	            						<input type="text" class="form-control" placeholder="House number and Street name" required>
-	            						<input type="text" class="form-control" placeholder="Appartments, suite, unit etc ..." required>
+	            						<input type="text" class="form-control" placeholder="Delivery Address" name="address" required>
 
 		                					<div class="col-sm-6">
 		                						<label>Phone *</label>
-		                						<input type="tel" class="form-control" required>
+		                						<input name="phoneNumber" type="tel" class="form-control" required>
 		                					</div><!-- End .col-sm-6 -->
 		                				</div><!-- End .row -->
 
@@ -71,7 +70,7 @@
 		                						</tr>
 		                						<tr class="summary-total">
 		                							<td>Total:</td>
-		                							<td>${{\Gloudemans\Shoppingcart\Facades\Cart::subTotal() + 10}}</td>
+		                							<td>${{\Gloudemans\Shoppingcart\Facades\Cart::subTotal() + 10.00}}</td>
 		                						</tr><!-- End .summary-total -->
 		                					</tbody>
 		                				</table><!-- End .table table-summary -->
@@ -95,7 +94,7 @@
 									
 										</div><!-- End .accordion -->
 
-		                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+		                				<button type="button" class="btn btn-outline-primary-2 btn-order btn-block">
 		                					<span class="btn-text">Place Order</span>
 		                					<span class="btn-hover-text">   <a  onclick="payWithPaystack('paid', '{{\Gloudemans\Shoppingcart\Facades\Cart::subTotal() + 10}}', '{{ \Illuminate\Support\Str::random(32) }}')" class="card-button-light-create">Pay ${{\Gloudemans\Shoppingcart\Facades\Cart::subTotal() + 10}} </a></span>
 		                				</button>

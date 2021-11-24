@@ -15,22 +15,22 @@ class CheckoutController extends Controller
     {
         $address = $request->input('address');
        $request->validate([
-            'phone_number' => 'required|min:10',
+            'phoneNumber' => 'required|min:10',
             'address' => 'required|address',
             'payment_reference' => 'required',
         ]);
 
             $address = $request->input('address');
-            $phone_number = $request->input('phone_number');
+            $phone_number = $request->input('phoneNumber');
               $order =  Orders::create([
                 'user_id' => auth()->user()->id,
                 'email' => auth()->user()->email,
                 'tracking'=> 0 ,
-                'phone_number' => $phone_number,
+                'phoneNumber' => $phone_number,
+                'payment_id' => $payment_id,
                 'address'=> $address,
                 'total' => Cart::subTotal() + 10,
                ]);
-// dd(Cart::content());
       
             foreach(Cart::content() as $item){
                 // dd($item->model);
