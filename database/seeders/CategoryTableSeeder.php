@@ -25,7 +25,7 @@ class CategoryTableSeeder extends Seeder
         Category::insert([
             ['name' => 'Swallow', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'Combo', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Sides', , 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Sides', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'breakfast', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'snacks', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'small chops',  'created_at' => $now, 'updated_at' => $now],

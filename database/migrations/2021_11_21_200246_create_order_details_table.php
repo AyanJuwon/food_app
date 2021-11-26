@@ -15,14 +15,8 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-             $table->unsignedBigInteger('order_id')->nullable();
-            $table->foreign('order_id')->references('id')
-                  ->on('orders')->onUpdate('cascade')->onDelete('set null');
-
-            $table->unsignedBigInteger('menu_id')->nullable();
-            $table->foreign('menu_id')->references('id')
-                ->on('menus')->onUpdate('cascade')->onDelete('set null');
-
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('menu_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });
