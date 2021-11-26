@@ -17,13 +17,13 @@ class OrdersTableSeeder extends Seeder
      // Insert into orders table
         $order = Order::create([
              'user_id' => null,
-            'total' => ,
+            'total' => 10000,
             'quantity' => 2,
             'address' => 'Fake Address',
             'phoneNumber'=>'9052145636',
-            'payment_id' =>,
+            'payment_id' =>'uyjiyujiopyjioji',
             'email'=>  'email@email.com',
-            'shipped' => true,
+            'tracking' => 0,
             'error' => null,
         ]);
 
@@ -43,13 +43,13 @@ class OrdersTableSeeder extends Seeder
         // Insert into orders table
         $order2 = Order::create([
               'user_id' => null,
-            'total' => ,
+            'total' => 2000,
             'quantity' => 2,
             'address' => 'Fake Address',
             'phoneNumber'=>'9052145636',
-            'payment_id' =>,
+            'payment_id' =>'yhioy9yhuhyiyj',
             'email'=>  'email@email.com',
-            'shipped' => true,
+            'tracking' => 0,
             'error' => null,
         ]);
 
@@ -59,7 +59,6 @@ class OrdersTableSeeder extends Seeder
             'menu_id' => 3,
             'quantity' => 1,
         ]);
-
         OrderDetail::create([
             'order_id' => $order2->id,
             'menu_id' => 4,
@@ -69,13 +68,13 @@ class OrdersTableSeeder extends Seeder
         // Insert into orders table
         $order3 = Order::create([
             'user_id' => null,
-            'total' => ,
+            'total' => 3000,
             'quantity' => 2,
             'address' => 'Fake Address',
             'phoneNumber'=>'9052145636',
-            'payment_id' =>,
+            'payment_id' =>'usagduagdsgajkldgasjk',
             'email'=>  'email@email.com',
-            'shipped' => true,
+            'tracking' => 0,
             'error' => null,
         ]);
 

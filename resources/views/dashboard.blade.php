@@ -3,11 +3,7 @@
 @section('content')
 
     <main class="main">
-        <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-            <div class="container">
-                <h1 class="page-title">My Account<span>Shop</span></h1>
-            </div><!-- End .container -->
-        </div><!-- End .page-header -->
+
         <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
             <div class="container">
                 <ol class="breadcrumb">
@@ -62,10 +58,10 @@
 
                                 <div class="tab-pane fade" id="tab-orders" role="tabpanel"
                                     aria-labelledby="tab-orders-link">
-                                    @if($orders_count > 0)
-                                    @include('orders')
+                                    @if ($orders_count > 0)
+                                        @include('orders')
                                     @else
-                                    <p>No order has been made yet.</p>
+                                        <p>No order has been made yet.</p>
                                     @endif
                                     <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
                                             class="icon-long-arrow-right"></i></a>

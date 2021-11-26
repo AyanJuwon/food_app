@@ -51,6 +51,7 @@
                     </div><!-- End .header-left -->
 
                     @include('partials.success')
+                    @include('partials.list_error')
 
                     <div class="header-right">
 
@@ -186,12 +187,11 @@
                                         <nav class="side-nav">
                                             <ul class="menu-vertical sf-arrows">
                                                 <li class="megamenu-container">
-                                                    @foreach ($categories as $category)
+                                                    @foreach (\App\Models\Category::all()  as $category)
 
 
                                                         <a class="sf-with-ul"
-                                                            href="{{ route('category', $category) }}"><i
-                                                                class="icon-laptop"></i>{{ $category->name }}</a>
+                                                            href="{{ route('category', $category) }}">{{ $category->name }}</a>
                                                     @endforeach
 
                                                 </li>
@@ -210,7 +210,7 @@
                                             <a href="#" class="sf-with-ul">Shop</a>
 
                                             <ul>
-                                                @foreach ($categories as $category)
+                                                @foreach (\App\Models\Category::all() as $category)
                                                     <li>
                                                         <a href="{{ route('category', $category) }}"
                                                             class="sf-with-ul">{{$category->name}}</a>

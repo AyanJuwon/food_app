@@ -131,7 +131,7 @@ class AdminController extends Controller
 
         Orders::where('id',$id)->update(['tracking'=>1]);
         // Orders::update('tracking',1 );
-
+        // create notification db, add useer id and message. then notify user
         session()->flash('message', 'Order completed successfully');
 
         // return response()->json(['success' => true]);

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 
+use App\Models\User;
 use App\Models\Orders;
 use App\Models\Category;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -145,7 +147,7 @@ class UserController extends Controller
         $orderDetails =  OrderDetail::where('order_id',$order->id)->get();
         $order_id = $order->id;
         $order = $order;
-        return view('my-order')->with([
+        return view('order')->with([
             'orderDetails' => $orderDetails,
             'order_id'=> $order_id,
             'order'=> $order,

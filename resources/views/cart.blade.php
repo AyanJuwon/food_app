@@ -63,7 +63,7 @@
                                                 {{ method_field('PATCH') }}
                                                 <td class="quantity-col">
                                                     <div class="cart-product-quantity">
-                                                        <input type="number" class="form-control"
+                                                        <input type="number" class="form-control" name="qty"
                                                             placeholder="{{ $item->qty }}" min="1" max="10" step="1"
                                                             data-decimals="0" required>
                                                     </div><!-- End .cart-product-quantity -->
@@ -73,12 +73,16 @@
                                                 <td class="remove-col">
 
                                                     <input hidden name='rowId' value="{{ $item->rowId }}">
-                                                    <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i
-                                                            class="icon-refresh"></i></a>
+                                                    <button class="btn btn-outline-dark-2" type="submit"><span>UPDATE
+                                                            CART</span><i class="icon-refresh"></i></button>
                                                 </td>
                                             </form>
-                                            <td class="remove-col"><button class="btn-remove"><i
-                                                        class="icon-close"></i></button></td>
+                                            <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
+                                                @csrf
+                                                {{ method_field('DELETE') }}
+                                                <td class="remove-col"><button class="btn-remove"><i
+                                                            class="icon-close"></i></button></td>
+                                            </form>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -96,7 +100,8 @@
                                     <tbody>
                                         <tr class="summary-subtotal">
                                             <td>Subtotal:</td>
-                                            <td>${{ \Gloudemans\Shoppingcart\Facades\Cart::subTotal() }}</td>
+                                            <?php $total = str_replace(',', '', Cart::SubTotal()); ?>
+                                            <td>${{ $total }}</td>
                                         </tr><!-- End .summary-subtotal -->
                                         <tr class="summary-shipping">
                                             <td>Shipping:</td>
@@ -106,8 +111,6 @@
                                         <tr class="summary-shipping-row">
                                             <td>
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" id="free-shipping" name="shipping"
-                                                        class="custom-control-input">
                                                     <label class="custom-control-label" for="free-shipping">
                                                         Shipping</label>
                                                 </div><!-- End .custom-control -->
@@ -117,7 +120,7 @@
 
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>${{ \Gloudemans\Shoppingcart\Facades\Cart::subTotal() + 10 }}</td>
+                                            <td>$ {{ $total + 10 }}</td>
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->
