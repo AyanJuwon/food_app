@@ -13,13 +13,9 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('orders')) return;
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')
-                  ->onUpdate('cascade')->onDelete('set null');
-
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('total');
             $table->integer('quantity')->default(1);
             $table->integer('tracking');

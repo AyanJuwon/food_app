@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\OrderDetail;
+use App\Models\Orders;
 use Illuminate\Database\Seeder;
 
 class OrdersTableSeeder extends Seeder
@@ -14,15 +16,15 @@ class OrdersTableSeeder extends Seeder
     public function run()
     {
         //
-     // Insert into orders table
-        $order = Order::create([
-             'user_id' => null,
+        // Insert into orders table
+        $order = Orders::create([
+            'user_id' => null,
             'total' => 10000,
             'quantity' => 2,
             'address' => 'Fake Address',
-            'phoneNumber'=>'9052145636',
-            'payment_id' =>'uyjiyujiopyjioji',
-            'email'=>  'email@email.com',
+            'phoneNumber' => '9052145636',
+            'payment_id' => 'uyjiyujiopyjioji',
+            'email' => 'email@email.com',
             'tracking' => 0,
             'error' => null,
         ]);
@@ -41,14 +43,14 @@ class OrdersTableSeeder extends Seeder
         ]);
 
         // Insert into orders table
-        $order2 = Order::create([
-              'user_id' => null,
+        $order2 = Orders::create([
+            'user_id' => null,
             'total' => 2000,
             'quantity' => 2,
             'address' => 'Fake Address',
-            'phoneNumber'=>'9052145636',
-            'payment_id' =>'yhioy9yhuhyiyj',
-            'email'=>  'email@email.com',
+            'phoneNumber' => '9052145636',
+            'payment_id' => 'yhioy9yhuhyiyj',
+            'email' => 'email@email.com',
             'tracking' => 0,
             'error' => null,
         ]);
@@ -66,14 +68,14 @@ class OrdersTableSeeder extends Seeder
         ]);
 
         // Insert into orders table
-        $order3 = Order::create([
+        $order3 = Orders::create([
             'user_id' => null,
             'total' => 3000,
             'quantity' => 2,
             'address' => 'Fake Address',
-            'phoneNumber'=>'9052145636',
-            'payment_id' =>'usagduagdsgajkldgasjk',
-            'email'=>  'email@email.com',
+            'phoneNumber' => '9052145636',
+            'payment_id' => 'usagduagdsgajkldgasjk',
+            'email' => 'email@email.com',
             'tracking' => 0,
             'error' => null,
         ]);
