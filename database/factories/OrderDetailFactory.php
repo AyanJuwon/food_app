@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Menu;
 use  \App\Models\OrderDetail;
+use App\Models\Orders;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderDetailFactory extends Factory
@@ -14,13 +16,13 @@ class OrderDetailFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             //
-            'order_id' => $this->faker->numerify('####'),
-            'menu_id' => $this->faker->randomDigit(1,5),
-            'quantity' => 1,
+            'order_id' => Orders::all()->random()->id,
+            'menu_id' => Menu::all()->random()->id,
+            'quantity' => $this->faker->numberBetween(1,10),
         ];
     }
 }

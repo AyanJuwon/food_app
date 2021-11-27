@@ -16,7 +16,7 @@ class Menu extends Model
      *
      * @var array
      */
-    protected $fillable = ['menu_name', 'menu_price', 'menu_description', 'menu_image', 'category'];
+    protected $fillable = ['menu_name', 'menu_price', 'menu_description', 'menu_image', 'category', 'category_id'];
     protected $searchable = [
         /**
          * Columns and their priority in search results.

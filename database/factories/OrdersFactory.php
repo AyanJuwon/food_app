@@ -5,6 +5,7 @@ namespace Database\Factories;
 
 use  \App\Models\Orders;
 
+use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,20 +18,19 @@ class OrdersFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            // 
-            
-            'user_id' => $this->faker->numerify('####'),
-            'total' => numberBetween(1000,30000),
-            'quantity' => numberBetween(1,10),
+
+            'user_id' => User::all()->random()->id,
+            'total' => $this->faker->numberBetween(1000,30000),
+            'quantity' => $this->faker->numberBetween(1,10),
             'address' => $this->faker->address,
             'phoneNumber'=>$this->faker->phoneNumber,
-            'payment_id' =>str_random(11),
+            'payment_id' => $this->faker->randomDigit(),
             'email'=>  $this->faker->safeEmail,
-            'trackng' => $this->faker->randomDigit(1,3),
-       
+            'tracking' => $this->faker->randomDigit(1,3),
+
 
         ];
     }
