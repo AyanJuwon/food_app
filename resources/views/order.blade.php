@@ -54,12 +54,12 @@
                                         <p>Quantity: {{ $orderDetail->quantity }} </p>
                                         <div>
                                             @if ($order->tracking == 0)
-                                                <span class="out-of-stock">In Transit</span>
+                                                <span class="out-of-stock">Cooking</span>
 
                                             @endif
                                             @if ($order->tracking == 1)
 
-                                                <span class="in-stock">Completed</span>
+                                                <span class="in-stock">Ready</span>
                                             @else
                                                 @if ($order->tracking == 2)
 
@@ -98,24 +98,12 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Payment Details</h5>
                                     <p class="card-text text-secondary  ">Paid with Paystacks</p>
-                                    <p class="card-text text-secondary">Items Total: ${{ $order->total - 10 }} </p>
-                                    <p class="card-text text-secondary">Delivery Fee: $100 </p>
-                                    <p class="card-text ">Total: ${{ $order->total }} </p>
+                                    <p class="card-text text-secondary">Items Total: ${{ $order->total }} </p>
+                                   
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    Delivery Information
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Delivery Address</h5>
-                                    <p class="card-text text-secondary">Address: {{ $order->address }}</p>
-                                    <p class="card-text text-secondary">Address: {{ $order->phoneNumber }}</p>
-                                </div>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>

@@ -28,8 +28,8 @@
                             <div class="col-lg-9">
                                 <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                                 <div class="row">
-                                    <label>Street address *</label>
-                                    <input type="text" class="form-control" placeholder="Delivery Address" name="address"
+                                    <label>Your Name*</label>
+                                    <input type="text" class="form-control" placeholder="Your name" name="name"
                                         required>
 
                                     <div class="col-sm-6">
@@ -67,13 +67,10 @@
                                                 <td>Subtotal:</td>
                                                 <td>${{ $total }}</td>
                                             </tr><!-- End .summary-subtotal -->
-                                            <tr>
-                                                <td>Shipping:</td>
-                                                <td>Free shipping</td>
-                                            </tr>
+                                          
                                             <tr class="summary-total">
                                                 <td>Total:</td>
-                                                <td>$ {{ $total + 10.0 }}</td>
+                                                <td>$ {{ $total}}</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
@@ -102,10 +99,10 @@
                                     <button type="button" class="btn btn-outline-primary-2 btn-order btn-block">
                                         <span class="btn-text">Place Order</span>
                                         <span class="btn-hover-text"> <a
-                                                onclick="payWithPaystack('paid', {{ $total + 10 }}, '{{ \Illuminate\Support\Str::random(32) }}')"
+                                                onclick="payWithPaystack('paid', {{ $total }}, '{{ \Illuminate\Support\Str::random(32) }}')"
                                                 class="card-button-light-create">Pay
                                                 $
-                                                {{ $total + 10 }}
+                                                {{ $total }}
                                             </a></span>
                                     </button>
                                 </div><!-- End .summary -->

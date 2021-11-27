@@ -54,13 +54,12 @@
                             </td>
                             {{-- <td class="stock-col"><span class="in-stock">In stock</span></td> --}}
                             <td class="action-col">
-                                <a href="{{ route('myOrder', $order) }}" class="btn btn-block btn-outline-primary-2">
-                                    See Details
+                                    <a href="{{ route('myOrder', $order) }}"  class="btn btn-block btn-outline-primary-2">
+                                            See Details
 
+                                    </a>
 
-                                </a>
-
-
+                                
                             </td>
                             <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
 
