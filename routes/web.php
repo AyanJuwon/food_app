@@ -42,6 +42,8 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::patch('/cart/{rowId}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 
     Route::get('shop', [App\Http\Controllers\UserController::class, 'index'])->name('menus');
+    
+    Route::get('shop', [App\Http\Controllers\HomeController::class, 'search'])->name('menus.search');
 
     Route::get('shop/{category}', [App\Http\Controllers\UserController::class, 'categoryFilter'])->name('category');
 

@@ -72,7 +72,7 @@ class CartController extends Controller
                     else{
 
                         // Cart::store();
-                        Cart::instance('wishlist')->store();
+                        // Cart::instance('wishlist')->store();
 
                         session()->flash('message', 'Item was added to your cart Successfully');
                         };

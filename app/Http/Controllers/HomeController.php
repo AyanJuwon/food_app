@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $trending = Menu::all();
+        $menus = Menu::all();
          $categories = Category::all();
-        return view('index')->with('trending',$trending)->with('categories',$categories);
+        return view('index')->with('menus',$menus)->with('categories',$categories);
+    }
+
+
+    public function search(Request $request ){
+        $query = $request->search;
+    $menus=Menu::where ( 'menu_name', 'LIKE', '%' . $query . '%' )->orWhere ( 'category', 'LIKE', '%' . $query . '%' )->get ();
+if (count ( $menus) > 0){
+
+         $categories = Category::all();
+
+        return view('shop')->with('menus',$menus)->with('categories',$categories)->withQuery ( $query );
+    }
+    else{
+          $categories = Category::all();
+        return view('shop')->withMessage ( 'No Details found. Try to search again !' )->with('categories',$categories);
+        
+    }
+        
     }
 }

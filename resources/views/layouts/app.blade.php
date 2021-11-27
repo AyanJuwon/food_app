@@ -102,12 +102,12 @@
                                     <div
                                         class="header-search header-search-extended header-search-visible header-search-no-radius">
                                         <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                                        <form action="#" method="get">
+                                        <form action="{{route('menus.search')}}" method="get">
                                             <div class="header-search-wrapper search-wrapper-wide">
+@csrf
 
-
-                                                <label for="q" class="sr-only">Search</label>
-                                                <input type="search" class="form-control" name="q" id="q"
+                                                <label for="search" class="sr-only">Search</label>
+                                                <input type="search" class="form-control" name="search" id="q"
                                                     placeholder="Search product ..." required>
 
                                                 <button class="btn btn-primary" type="submit"><i
@@ -136,9 +136,8 @@
                                                 data-display="static">
                                                 <i class="icon-shopping-cart"></i>
                                                 <span class="cart-count">
-                                                    @if (!Auth::user())0
-                                                        @else{{ \Gloudemans\Shoppingcart\Facades\Cart::count() }}
-                                                    @endif
+                                                    {{ \Gloudemans\Shoppingcart\Facades\Cart::count() }}
+
                                                 </span>
                                                 <span class="cart-txt">Cart</span>
                                             </a>
@@ -183,11 +182,11 @@
                                         Browse Categories
                                     </a>
 
-                                    <div class="dropdown-menu show">
+                                    <div class="dropdown-menu ">
                                         <nav class="side-nav">
                                             <ul class="menu-vertical sf-arrows">
                                                 <li class="megamenu-container">
-                                                    @foreach (\App\Models\Category::all()  as $category)
+                                                    @foreach (\App\Models\Category::all() as $category)
 
 
                                                         <a class="sf-with-ul"
@@ -213,7 +212,7 @@
                                                 @foreach (\App\Models\Category::all() as $category)
                                                     <li>
                                                         <a href="{{ route('category', $category) }}"
-                                                            class="sf-with-ul">{{$category->name}}</a>
+                                                            class="sf-with-ul">{{ $category->name }}</a>
 
 
                                                     </li>
@@ -224,8 +223,8 @@
                                         </li>
 
                                         <li>
-                                            <a href="" class="sf-with-ul">Dashboard</a>
-                                           
+                                            <a href="{{ route('dashboard') }}" class="sf-with-ul">Dashboard</a>
+
 
                                         </li>
                                     </ul><!-- End .menu -->
