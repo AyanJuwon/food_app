@@ -18,7 +18,6 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        //
 
          $now = Carbon::now()->toDateTimeString();
 

@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         //
          $categories = Category::all();
-        $menu =  Menu::where('id',$id)->get()->paginate(16);
+        $menu =  Menu::where('id',$id)->paginate(16);
         return view('menu')->with('menu',$menu)->with('categories',$categories);
     }
 
@@ -104,10 +104,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
 
      public function categoryFilter($category){
-        $menus = Menu::where('category_id',$category)->get()->paginate(16);
+        $menus = Menu::where('category_id',$category)->paginate(16);
 
         return view('shop')->with('menus',$menus)->with('categories',Category::all());
      }
@@ -116,17 +116,17 @@ class UserController extends Controller
      public function dashboard(){
             $orders = Orders::where('user_id',auth()->user()->id)->get();
              $categories = Category::all();
-        
+
             $orders_count = Orders::where('user_id',auth()->user()->id)->count();
 
 
 
 
 
-         
+
         return view('dashboard')
         ->with('orders',$orders)->with('categories',$categories)->with('orders_count',$orders_count);
-        
+
      }
     public function orders(){
         session()->put('backUrl', '/orders');
@@ -135,9 +135,9 @@ class UserController extends Controller
         return view('orders')
         ->with('orders',$orders)->with('categories',$categories);
         // ->with('ordermenus',$ordermenus);
-    
+
     }
-   
+
     public function viewOrderDetails(Orders $order){
         session()->put('backUrl','/my-order');
          if (auth()->id() !== $order->user_id) {
@@ -175,7 +175,7 @@ class UserController extends Controller
         session()->put('backUrl', '/saved-items');
         $orders = Orders::where('user_id',auth()->user()->id)->get();
         $wishlist = Cart::instance('wishlist')->content();
-        $completed = Orders::where('tracking',1)->get(); 
+        $completed = Orders::where('tracking',1)->get();
         $categories = Category::all();
 
         return view('tracking')
@@ -219,5 +219,5 @@ class UserController extends Controller
 
         return redirect()->back();
     }
-    
+
 }

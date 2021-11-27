@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories;
+use App\Models\Category;
 use Faker\Generator as Faker;
 
 use  \App\Models\Menu;
@@ -24,14 +25,8 @@ class MenuFactory extends Factory
             'menu_description' => $this->faker->paragraph,
             'menu_image' => 'uploads/menu/food.jpg',
             'category' =>$this->faker->word ,
-            'category_id' => $this->faker->numberBetween(1,10),
+            'category_id' => Category::all()->random()->id,
         ];
     }
-
-    // $factory->define(App\Models\Menu::class, function (Faker $this->faker) {
-    // return [
-        
-        
-    // ];
 
 }

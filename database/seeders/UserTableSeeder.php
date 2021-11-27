@@ -3,10 +3,13 @@
 namespace Database\Seeders;
 
 
+use App\Models\User;
 use Faker\Generator as Faker;
 
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -17,17 +20,24 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        // You don't use a faker in a seeder only Factories, always run `php artisan db:seed` to test your seeders
-//         if (User::count() == 0) {
-//
-//            User::create([
-//                'firstName'           => $this->faker()->name,
-//                'lastName'           => $this->faker()->name,
-//                'email'          => $this->faker()->email,
-//                'password'       => bcrypt(config('voyager.adminPassword')),
-//                'remember_token' => str_random(60),
-//                'role_id'        => $role->id,
-//            ]);
+        User::create([
+            'firstName' => 'Olamiposi',
+            'lastName' => 'Olaiya',
+            'email' => 'posi@admin.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('12'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'admin'
+        ]);
+
+        User::create([
+            'firstName' => 'Ayanniran',
+            'lastName' => 'Juwon',
+            'email' => 'juwon@admin.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('12'), // password
+            'remember_token' => Str::random(10),
+            'role' => 'admin'
+        ]);
     }
-//}
 }
