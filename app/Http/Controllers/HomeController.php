@@ -26,15 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
+        $trending = Menu::paginate(16);
          $categories = Category::all();
-        return view('index')->with('menus',$menus)->with('categories',$categories);
+        return view('index')->with('trending',$trending)->with('categories',$categories);
     }
 
 
     public function search(Request $request ){
         $query = $request->search;
-    $menus=Menu::where ( 'menu_name', 'LIKE', '%' . $query . '%' )->orWhere ( 'category', 'LIKE', '%' . $query . '%' )->get ();
+    $menus=Menu::where ( 'menu_name', 'LIKE', '%' . $query . '%' )->orWhere ( 'category', 'LIKE', '%' . $query . '%' )->paginate(16);
 if (count ( $menus) > 0){
 
          $categories = Category::all();

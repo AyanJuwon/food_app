@@ -46,7 +46,7 @@
                     <div class="header-left">
                         <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
                         @if (Auth::user())
-                            <a href="tel:#"><i class="icon-phone"></i>{{ Auth::user()->firstName }}</a>
+                            <a href="#"></i>{{ Auth::user()->firstName }}</a>
                         @endif
                     </div><!-- End .header-left -->
 

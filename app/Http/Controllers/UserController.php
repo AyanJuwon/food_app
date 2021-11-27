@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         //
          $categories = Category::all();
-        $menu =  Menu::where('id',$id)->get();
+        $menu =  Menu::where('id',$id)->get()->paginate(16);
         return view('menu')->with('menu',$menu)->with('categories',$categories);
     }
 
@@ -107,7 +107,7 @@ class UserController extends Controller
    
 
      public function categoryFilter($category){
-        $menus = Menu::where('category_id',$category)->get();
+        $menus = Menu::where('category_id',$category)->get()->paginate(16);
 
         return view('shop')->with('menus',$menus)->with('categories',Category::all());
      }
