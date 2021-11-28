@@ -22,13 +22,10 @@ class OrdersFactory extends Factory
     {
         return [
 
-            'user_id' => User::all()->random()->id,
+            'name' => $this->faker->name,
             'total' => $this->faker->numberBetween(1000,30000),
             'quantity' => $this->faker->numberBetween(1,10),
-            'address' => $this->faker->address,
-            'phoneNumber'=>$this->faker->phoneNumber,
             'payment_id' => $this->faker->randomDigit(),
-            'email'=>  $this->faker->safeEmail,
             'tracking' => $this->faker->randomDigit(1,3),
 
 
