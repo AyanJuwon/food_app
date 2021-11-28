@@ -18,14 +18,18 @@ class MenuFactory extends Factory
      */
     public function definition()
     {
+
+        $category_id = Category::all()->random()->id ;
+        $category = Category::where('id',$category_id)->first() ;
         return [
             // we want categoey name and id to correspond here.....
+             
             'menu_name' => $this->faker->name,
             'menu_price' => $this->faker->numberBetween(1000, 500000),
             'menu_description' => $this->faker->paragraph,
             'menu_image' => 'uploads/menu/food.jpg',
-            'category' => Category::all()->random()->name ,
-            'category_id' => Category::all()->random()->id,
+            'category' => $category->name,
+            'category_id' => $category_id,
         ];
     }
 
