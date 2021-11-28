@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Orders;
+use App\Models\Category;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -147,5 +148,22 @@ class AdminController extends Controller
 
         session()->flash('message', 'Order cancelled successfully');
         return redirect()->back();
+    }
+
+    public function viewOrderDetails(Orders $order){
+        session()->put('backUrl','/my-order');
+         if (auth()->id() !== $order->user_id) {
+            return back()->withErrors('You do not have access to this!');
+        }
+         $categories = Category::all();
+        $orderDetails =  OrderDetail::where('order_id',$order->id)->get();
+        $order_id = $order->id;
+        $order = $order;
+        return view('admin.admin.orderDetails')->with([
+            'orderDetails' => $orderDetails,
+            'order_id'=> $order_id,
+            'order'=> $order,
+            'categories' => $categories
+        ]);
     }
 }

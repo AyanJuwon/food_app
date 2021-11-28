@@ -22,12 +22,12 @@
     <div class="breadcrumbbar">
         <div class="row align-items-center">
             <div class="col-md-8 col-lg-8">
-                <h4 class="page-title">All categoriess</h4>
+                <h4 class="page-title">All Categories</h4>
                 <div class="breadcrumb-list">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="#">Manage categoriess</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">All categoriess</li>
+                        <li class="breadcrumb-item"><a href="#">Manage Categories</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">All Categories</li>
                     </ol>
                 </div>
             </div>

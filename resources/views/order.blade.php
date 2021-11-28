@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-
+    <meta http-equiv="refresh" content="5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('asset/styles/store.css') }}">
@@ -28,7 +28,7 @@
                     <h4>Items In Your Order</h4>
 
                     @foreach (\App\Models\OrderDetail::where('order_id', $order_id)->get() as $orderDetail)
-                        @foreach (\App\Models\Menu::where('id', $orderDetail->product_id)->get() as $menu)
+                        @foreach (\App\Models\Menu::where('id', $orderDetail->menu_id)->get() as $menu)
 
 
 
@@ -37,15 +37,15 @@
                                 <div class="story-card__body-story">
 
                                     <div class="story-card__body-left">
-                                        <img src="{{ asset('uploads/menu/' . $menu->product_image) }}}"
-                                            alt="{{ $menu->product_image }}" class="story-card__story-img">
+                                        <img src="{{ asset('uploads/menu/' . $menu->menu_image) }}}"
+                                            alt="{{ $menu->menu_image }}" class="story-card__story-img">
                                     </div>
 
                                     <div class="story-card__body-right">
                                         <div class="story-card__header">
 
                                             <div class="story-card__info">
-                                                <h6>{{ $menu->product_name }}</h6>
+                                                <h6>{{ $menu->menu_name }}</h6>
                                             </div>
 
                                         </div>
@@ -54,16 +54,19 @@
                                         <p>Quantity: {{ $orderDetail->quantity }} </p>
                                         <div>
                                             @if ($order->tracking == 0)
-                                                <span class="out-of-stock">Cooking</span>
+                                                <span class="out-of-stock text-warning">Cooking</span>
 
                                             @endif
                                             @if ($order->tracking == 1)
 
-                                                <span class="in-stock">Ready</span>
+                                                <span class="in-stock text-success">Ready</span>
+                                                <?php session()->flash('message', 'your order with id' .
+                                                $order->id . 'and ' . $order->payment_id . ' is ready'); ?>
                                             @else
                                                 @if ($order->tracking == 2)
-
-                                                    <span class="out-of-stock">Cancelled</span>
+                                                    <?php session()->flash('error', 'your order with id' .
+                                                    $order->id . 'and ' . $order->payment_id . ' is cancelled'); ?>
+                                                    <span class="out-of-stock text-danger">Cancelled</span>
                                                 @endif
 
                                             @endif
@@ -72,12 +75,11 @@
                                             {{ $order->created_at->toDateString() }}
                                         </p>
                                         <p class="story-card__date">Price:
-                                            ${{ $menu->product_price }}
+                                            ${{ $menu->menu_price }}
                                         </p>
                                         <a href="{{ route('menu', $menu->id) }}" class="memorial-card-button">Buy
                                             Again</a>
-                                        <a href="#" class="memorial-card-button">Track
-                                            Order</a>
+
                                         </p>
                                     </div>
                                 </div>
@@ -99,14 +101,35 @@
                                     <h5 class="card-title">Payment Details</h5>
                                     <p class="card-text text-secondary  ">Paid with Paystacks</p>
                                     <p class="card-text text-secondary">Items Total: ${{ $order->total }} </p>
-                                   
+
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
         </div>
     </main>
+@endsection
+@section('scripts')
+    <script>
+        // / Count Down that executes ever second
+        setInterval(function() {
+            refreshCheck();
+            //   updateVisualTimer();
+        }, 1000);
+
+        // The code that checks if the window needs to reload
+        function refreshCheck() {
+            window.location.reload(); // If this is called no reset is needed
+            reset(); // We want to reset just to make sure the location reload is not called.
+
+
+        }
+
+    </script>
+
+
+
 @endsection

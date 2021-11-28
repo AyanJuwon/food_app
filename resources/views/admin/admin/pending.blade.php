@@ -35,10 +35,11 @@
                         <tr class="table100-head">
                             <th class="column1">Date</th>
                             <th class="column2">Order ID</th>
-                            <th class="column5">Order Items Quantity</th>
+                            <th class="column5">Order Quantity</th>
                             <th class="column6">Total</th>
-                            <th class="column7">Address</th>
+                            <th class="column7">Reference</th>
                             <th class="column8">Status</th>
+                            <th class="column9">See Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,14 +53,14 @@
 
 
                                 <td class="column5">
-                                    @foreach (\App\OrderProduct::where('order_id', $order->id)->get() as $orderProduct)
-                                        <?php $cart_quantity += $orderProduct->quantity; ?>
+                                    @foreach (\App\Models\OrderDetail::where('order_id', $order->id)->get() as $orderDetail)
+                                        <?php $cart_quantity += $orderDetail->quantity; ?>
                                     @endforeach
                                     <?php echo $cart_quantity; ?>
                                 </td>
 
-                                <td class="column6">${{ $order->total - 100 }}</td>
-                                <td class="column7">{{ $order->address }}</td>
+                                <td class="column6">${{ $order->total }}</td>
+                                <td class="column7">{{ $order->payment_id }}</td>
                                 <td class="column8">
                                     <form hidden id="completeForm"
                                         action="{{ route('admin.completeOrder', [$order->id]) }}" method="post">
@@ -68,17 +69,18 @@
                                         method="post">
                                         @csrf<button type="submit" class="btn btn-danger">Cancel Order</button></form>
 
-                                   <p><a href="#" class="text-success" onclick="event.preventDefault();document.getElementById('completeForm').submit();
-">Complete Order</a>/<a href="#"  onclick="event.preventDefault();document.getElementById('cancelForm').submit();
-" class="text-danger">Cancel Order</a></p>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    <p><a href="#" class="text-success" onclick="event.preventDefault();document.getElementById('completeForm').submit();
+        ">Complete Order</a>/<a href="#" onclick="event.preventDefault();document.getElementById('cancelForm').submit();
+        " class="text-danger">Cancel Order</a></p>
             </div>
+            </td>
+            <td class="column9"><a href="{{ route('adminViewOrder', $order) }}" class="text-primary">See Details</a></td>
+            </tr>
+            @endforeach
+            </tbody>
+            </table>
         </div>
+    </div>
     </div>
 @endsection
 

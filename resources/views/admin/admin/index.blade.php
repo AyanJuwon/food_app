@@ -82,11 +82,11 @@
                                                             Action
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            @if ($admin->id != Auth::user()->id)
-                                                                <a class="dropdown-item"
-                                                                    onclick="handleDelete('{{ $admin->id }}')">Delete
-                                                                    Admin</a>
-                                                            @endif
+
+                                                            <a class="dropdown-item"
+                                                                onclick="handleDelete('{{ $admin->id }}')">Delete
+                                                                Admin</a>
+
                                                         </div>
                                                     </div>
                                                 </div>

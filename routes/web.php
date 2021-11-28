@@ -64,6 +64,8 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('cancelled', [App\Http\Controllers\AdminController::class ,'adminViewCancelledOrders'])->name('admin.cancelled');
 
     Route::get('completed', [App\Http\Controllers\AdminController::class,'adminViewCompletedOrders'])->name('admin.completed');
+    
+    Route::get('orderDetails/{order}', [App\Http\Controllers\AdminController::class,'viewOrderDetails'])->name('adminViewOrder');
 
     Route::post('/pending/complete/{id}',[App\Http\Controllers\AdminController::class, 'completeOrders'])->name('admin.completeOrder');
 
@@ -75,8 +77,8 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
 // });
 
 
-// User functions
-Route::middleware(['auth'])->group(function(){
+// // User functions
+// Route::middleware(['auth'])->group(function(){
 
     Route::get('/checkout', [App\Http\Controllers\UserController::class, 'checkout'])->name('checkout');
 
@@ -112,7 +114,7 @@ Route::middleware(['auth'])->group(function(){
 
 //     dd("Email is Sent.");
 // })->name('sendMail');
-});
+// });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

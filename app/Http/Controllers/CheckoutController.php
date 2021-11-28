@@ -17,20 +17,14 @@ class CheckoutController extends Controller
     {
         $address = $request->input('address');
        $request->validate([
-            'phoneNumber' => 'required',
-            'address' => 'required',
-            'payment_id' => 'required',
+            'name' => 'required',
+           
         ]);
  $total = str_replace(',', '', Cart::SubTotal()); 
-            $address = $request->input('address');
-            $phone_number = $request->input('phoneNumber');
               $order =  Orders::create([
-                'user_id' => auth()->user()->id,
-                'email' => auth()->user()->email,
+               'name'=>$request->name,
                 'tracking'=> 0 ,
-                'phoneNumber' => $phone_number,
                 'payment_id' => $request->payment_id,
-                'address'=> $address,
                 'total' => $total,
                ]);
       
@@ -44,7 +38,7 @@ class CheckoutController extends Controller
             ]);}
         // Mail::to(auth()->user()->email)->send(new OrderPlaced($order));
  
-        session()->flash('message', 'Order Completed, you will recieve an email shortly with order details');
+        session()->flash('message', 'Order Completed, Ypu will be served in 30 nminues');
         session()->flash('error', 'Order Failed');
 //     Mail::to('ayanniran@gmail.com')->send(new OrderPlaced($order,$email,$firstname))   ;
      Cart::instance('default')->destroy();
