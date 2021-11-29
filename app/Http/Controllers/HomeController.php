@@ -13,11 +13,11 @@ class HomeController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+      */
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -26,9 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $trending = Menu::paginate(16);
+        $menu = Menu::paginate(16);
+        $swallow = Category::where('name','swallow')->take(3);
+        $combo = Category::where('name','combo')->take(3);
+        // $drinks = Category::where('name','drinks')->take(3);
+        $sides = Category::where('name','sides')->take(3);
+        $breakfast = Category::where('name','breakfast')->take(3);
          $categories = Category::all();
-        return view('index')->with('trending',$trending)->with('categories',$categories);
+        return view('index')->with('menu',$menu)->with('categories',$categories)->with('swallow',$swallow)
+        ->with('combo',$combo)
+        // ->with('drinks',$drinks)
+        ->with('sides',$sides)
+        ->with('breakfast',$breakfast);
     }
 
 

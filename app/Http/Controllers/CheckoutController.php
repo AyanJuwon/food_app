@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Orders;
 use App\Models\OrderDetail;
+use App\Models\Customer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,16 +19,26 @@ class CheckoutController extends Controller
         $address = $request->input('address');
        $request->validate([
             'name' => 'required',
+            'table_id'=>'required',
+            'email'=>'required',
+            'phoneNumber'=>'required',
            
         ]);
  $total = str_replace(',', '', Cart::SubTotal()); 
               $order =  Orders::create([
+                  'table_id'=>$request->table_id,
                'name'=>$request->name,
                 'tracking'=> 0 ,
                 'payment_id' => $request->payment_id,
                 'total' => $total,
                ]);
-      
+      $customer = Customer::create([
+        'name'=>$request->name,
+        'email'=>$request->email,
+        'phoneNumber'=>$request->phoneNumber,
+        
+
+      ]);
             foreach(Cart::content() as $item){
                 OrderDetail::create([
                 'order_id' => $order->id,

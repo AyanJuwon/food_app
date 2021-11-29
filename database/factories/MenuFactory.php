@@ -25,10 +25,9 @@ class MenuFactory extends Factory
             // we want categoey name and id to correspond here.....
              
             'menu_name' => $this->faker->name,
-            'menu_price' => $this->faker->numberBetween(1000, 500000),
+            'menu_price' => $this->faker->numberBetween(1000, 10000),
             'menu_description' => $this->faker->paragraph,
             'menu_image' => 'uploads/menu/food.jpg',
-            'category' => $category->name,
             'category_id' => $category_id,
         ];
     }

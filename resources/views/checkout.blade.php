@@ -27,13 +27,19 @@
                             <div class="col-lg-9">
                                 <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
                                 <div class="row">
-                                    <label>Your Name*</label>
-                                    <input type="text" class="form-control" placeholder="Your name" name="name"
-                                        required>
-
+                                    <div class="cl-sm-6">
+                                        <label>Your Name*</label>
+                                        <input type="text" class="form-control" placeholder="Your name" name="name"
+                                            id="name" required>
+                                    </div>
                                     <div class="col-sm-6">
                                         <label>Phone *</label>
-                                        <input name="phoneNumber" type="tel" class="form-control" required>
+                                        <input name="phoneNumber" type="tel" class="form-control" required id="phoneNumber">
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label>Email *</label>
+                                        <input name="email" type="tel" class="form-control" required id="email">
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
@@ -66,10 +72,10 @@
                                                 <td>Subtotal:</td>
                                                 <td>${{ $total }}</td>
                                             </tr><!-- End .summary-subtotal -->
-                                          
+
                                             <tr class="summary-total">
                                                 <td>Total:</td>
-                                                <td>$ {{ $total}}</td>
+                                                <td>$ {{ $total }}</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
@@ -95,15 +101,16 @@
 
                                     </div><!-- End .accordion -->
                                     <input type="hidden" id="reference" name="payment_id">
-                                    <button type="button" class="btn btn-outline-primary-2 btn-order btn-block">
-                                        <span class="btn-text">Place Order</span>
-                                        <span class="btn-hover-text"> <a
-                                                onclick="payWithPaystack('paid', {{ $total }}, '{{ \Illuminate\Support\Str::random(32) }}')"
-                                                class="card-button-light-create">Pay
+                                    <input type="hidden" id="table" name="table_id" value=1>
+                                    <a onclick="payWithPaystack('paid', {{ $total }}, '{{ \Illuminate\Support\Str::random(32) }}')"
+                                        class="card-button-light-create"> <button type="button"
+                                            class="btn btn-outline-primary-2 btn-order btn-block">
+                                            <span class="btn-text">Place Order</span>
+                                            <span class="btn-hover-text"> Pay
                                                 $
                                                 {{ $total }}
-                                            </a></span>
-                                    </button>
+                                            </span>
+                                        </button> </a>
                                 </div><!-- End .summary -->
                             </aside><!-- End .col-lg-3 -->
                         </div><!-- End .row -->
@@ -129,15 +136,15 @@
 
             var handler = PaystackPop.setup({
                 key: 'pk_test_e4c13c774ed4719123ccfb37ae4107a23e25a5a3', // Replace with your public key
-                email: '{{ auth()->user()->email }}', // document.getElementById("email").value,
+                email: document.getElementById("email").value,
                 amount: amt,
                 currency: "NGN",
                 ref: ref,
                 metadata: {
                     custom_fields: [{
-                        display_name: '{{ auth()->user()->name }}',
-                        variable_name: "mobile_number",
-                        value: "{{ auth()->user()->id }}"
+                        display_name: document.getElementById("name").value,
+                        variable_name: document.getElementById("phoneNumber").value,
+                        value: document.getElementById("email").value,
                     }]
                 },
                 callback: function(response) {

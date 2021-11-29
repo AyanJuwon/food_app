@@ -20,8 +20,13 @@ class Orders extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function products()
+    public function menus()
     {
-        return $this->belongsToMany('App\Models\Product')->withPivot('quantity');
+        return $this->belongsToMany('App\Models\Menu')->withPivot('quantity');
+    }
+
+    public function table()
+    {
+        return $this->hasOne('App\Models\Table');
     }
 }

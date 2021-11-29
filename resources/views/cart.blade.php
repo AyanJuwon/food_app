@@ -107,7 +107,7 @@
                                             <td>Shipping:</td>
                                             <td>&nbsp;</td>
                                         </tr>
-
+'
                                         <tr class="summary-shipping-row">
                                             <td>
                                                 <div class="custom-control custom-radio">

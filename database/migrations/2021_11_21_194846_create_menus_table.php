@@ -17,7 +17,7 @@ class CreateMenusTable extends Migration
             $table->id();
             $table->string('menu_name');
             $table->string('menu_image');
-            $table->string('category');
+            // $table->string('category');
             $table->float('menu_price');
             $table->text('menu_description');
 //            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');

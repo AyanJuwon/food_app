@@ -22,13 +22,13 @@ class CategoryTableSeeder extends Seeder
          $now = Carbon::now()->toDateTimeString();
 
         Category::insert([
-            ['name' => 'Swallow', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Combo', 'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'Sides', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'swallow', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'combo', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'sides', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'breakfast', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'snacks', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'small chops',  'created_at' => $now, 'updated_at' => $now],
-            ['name' => 'continental', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'drinks', 'created_at' => $now, 'updated_at' => $now],
         ]);
     }
 }

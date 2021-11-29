@@ -83,9 +83,9 @@ class RegisterController extends Controller
                return route('admin.create');
                break;
            default:
-               return '/about';
+               return route('admin.index');
                break;
        }
-        return 'home';
+        return route('admin.index');
     }
 }
