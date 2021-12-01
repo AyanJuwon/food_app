@@ -13,6 +13,6 @@ class Table extends Model
 
      public function order()
     {
-        return $this->belomgsTo('App\Models\Orders');
+        return $this->belongsTo('App\Models\Orders');
     }
 }
