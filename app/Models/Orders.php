@@ -4,29 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Orders extends Model
 {
     use HasFactory;
 
      protected $fillable = [
-        'name','total','quantity','payment_id','tracking'
+        'total','quantity','reference','tracking', 'table_id'
     ];
 
      protected $hidden = ['tracking'];
-     
-    public function user()
+
+    public function user(): BelongsTo
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
-    public function menus()
+    public function menus(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Menu')->withPivot('quantity');
+        return $this->belongsToMany(Menu::class);
     }
 
-    public function table()
+    public function table(): HasOne
     {
-        return $this->hasOne('App\Models\Table');
+        return $this->hasOne(Table::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenusTable extends Migration
+class UpdateOrdersTableWithTableId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
-            $table->id();
-            $table->string('menu_name');
-            $table->string('menu_image');
-            $table->float('menu_price');
-            $table->text('menu_description');
-            $table->timestamps();
+        Schema::table('orders', function (Blueprint $table) {
+            $table->foreignId('table_id')->after('payment_id')->constrained('tables')->onDelete('cascade');
         });
     }
 
@@ -30,6 +25,8 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign(['table_id']);
+        });
     }
 }

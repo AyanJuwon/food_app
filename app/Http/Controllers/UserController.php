@@ -15,12 +15,12 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class UserController extends Controller
 {
     //
-     public function index()
+    public function index()
     {
         //
         $trending = Menu::all();
-         $categories = Category::all();
-        return view('shop')->with('trending',$trending)->with('categories',$categories);
+        $categories = Category::all();
+        return view('shop')->with('trending', $trending)->with('categories', $categories);
     }
 
     /**
@@ -36,7 +36,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,15 +47,15 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-         $categories = Category::all();
-        $menu =  Menu::where('id',$id)->paginate(16);
-        return view('menu')->with('menu',$menu)->with('categories',$categories);
+        $categories = Category::all();
+        $menu = Menu::where('id', $id)->paginate(16);
+        return view('menu')->with('menu', $menu)->with('categories', $categories);
     }
 
     /**
@@ -71,7 +71,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
@@ -79,14 +79,14 @@ class UserController extends Controller
         $request->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
+            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->id(),
             'password' => 'sometimes|nullable|string|min:6|confirmed',
         ]);
 
         $user = auth()->user();
         $input = $request->except('password', 'password_confirmation');
 
-        if (! $request->filled('password')) {
+        if (!$request->filled('password')) {
             $user->fill($input)->save();
 
             return back()->with('success_message', 'Profile updated successfully!');
@@ -101,95 +101,97 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
 
 
-     public function categoryFilter($category){
-        $menus = Menu::where('category_id',$category)->paginate(16);
+    public function categoryFilter($category)
+    {
+        $menus = Menu::where('category_id', $category)->paginate(16);
 
-        return view('shop')->with('menus',$menus)->with('categories',Category::all());
-     }
-
-
-     public function dashboard(){
-            $orders = Orders::where('user_id',auth()->user()->id)->get();
-             $categories = Category::all();
-
-            $orders_count = Orders::where('user_id',auth()->user()->id)->count();
+        return view('shop')->with('menus', $menus)->with('categories', Category::all());
+    }
 
 
+    public function dashboard()
+    {
+        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $categories = Category::all();
 
-
-
+        $orders_count = Orders::where('user_id', auth()->user()->id)->count();
 
         return view('dashboard')
-        ->with('orders',$orders)->with('categories',$categories)->with('orders_count',$orders_count);
+            ->with('orders', $orders)->with('categories', $categories)->with('orders_count', $orders_count);
 
-     }
-    public function orders(){
+    }
+
+    public function orders()
+    {
         session()->put('backUrl', '/orders');
-        $orders = Orders::where('user_id',auth()->user()->id)->get();
-         $categories = Category::all();
+        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $categories = Category::all();
         return view('orders')
-        ->with('orders',$orders)->with('categories',$categories);
+            ->with('orders', $orders)->with('categories', $categories);
         // ->with('ordermenus',$ordermenus);
 
     }
 
-    public function viewOrderDetails(Orders $order){
-        session()->put('backUrl','/my-order');
-         if (auth()->id() !== $order->user_id) {
+    public function viewOrderDetails(Orders $order)
+    {
+        session()->put('backUrl', '/my-order');
+        if (auth()->id() !== $order->user_id) {
             return back()->withErrors('You do not have access to this!');
         }
-         $categories = Category::all();
-        $orderDetails =  OrderDetail::where('order_id',$order->id)->get();
+        $categories = Category::all();
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
         $order_id = $order->id;
         $order = $order;
         return view('order')->with([
             'orderDetails' => $orderDetails,
-            'order_id'=> $order_id,
-            'order'=> $order,
+            'order_id' => $order_id,
+            'order' => $order,
             'categories' => $categories
         ]);
     }
 
 
-    public function trackOrder($id){
+    public function trackOrder($id)
+    {
         session()->put('backUrl', '/tracking');
-        $orders = Orders::where('user_id',auth()->user()->id)->get();
-        $order = Orders::where('id',$id)->get();
-        $tracked = Orders::where('id',$id)->where('tracking',1)->get();
-        $completed = Orders::where('tracking',1)->get();
-         $categories = Category::all();
+        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $order = Orders::where('id', $id)->get();
+        $tracked = Orders::where('id', $id)->where('tracking', 1)->get();
+        $completed = Orders::where('tracking', 1)->get();
+        $categories = Category::all();
         return view('tracking')
-        ->with('order',$order)
-        ->with('tracked',$tracked)
-        ->with('completed',$completed)
-        ->with('categories',$categories)
-        ->with('orders',$orders);
+            ->with('order', $order)
+            ->with('tracked', $tracked)
+            ->with('completed', $completed)
+            ->with('categories', $categories)
+            ->with('orders', $orders);
     }
 
-    public function savedItems(){
+    public function savedItems()
+    {
         session()->put('backUrl', '/saved-items');
-        $orders = Orders::where('user_id',auth()->user()->id)->get();
+        $orders = Orders::where('user_id', auth()->user()->id)->get();
         $wishlist = Cart::instance('wishlist')->content();
-        $completed = Orders::where('tracking',1)->get();
+        $completed = Orders::where('tracking', 1)->get();
         $categories = Category::all();
 
         return view('tracking')
-        ->with('completed',$completed)
-        ->with('categories',$categories)
-        ->with('orders',$orders)
-        ->with('wishlist',$wishlist);
+            ->with('completed', $completed)
+            ->with('categories', $categories)
+            ->with('orders', $orders)
+            ->with('wishlist', $wishlist);
     }
 
 
-
-    public function checkout(){
+    public function checkout()
+    {
         $delivery = 0;
-        foreach (Cart::content() as $item){
+        foreach (Cart::content() as $item) {
             $deliveryFee = $delivery + $item->options->delivery;
             $delivery = $deliveryFee;
         }
@@ -197,20 +199,23 @@ class UserController extends Controller
         return view('checkout')
             ->with('delivery', $delivery);
     }
-    public function checkoutFailed(){
+
+    public function checkoutFailed()
+    {
         $delivery = 0;
-         $categories = Category::all();
-        foreach (Cart::content() as $item){
+        $categories = Category::all();
+        foreach (Cart::content() as $item) {
             $deliveryFee = $delivery + $item->options->delivery;
             $delivery = $deliveryFee;
         }
-       session()->flash('error','Payment failed, Try again');
+        session()->flash('error', 'Payment failed, Try again');
         return view('checkout')
             ->with('delivery', $delivery)
             ->with('categories', $categories);
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $user = User::find($id);
 
         $user->delete();
