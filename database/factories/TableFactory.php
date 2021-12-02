@@ -14,7 +14,7 @@ class TableFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'table_name' => $this->faker->name
         ];
     }
 }

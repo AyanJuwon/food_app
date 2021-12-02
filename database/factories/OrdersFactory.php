@@ -5,6 +5,7 @@ namespace Database\Factories;
 
 use  \App\Models\Orders;
 
+use App\Models\Table;
 use App\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,14 +22,11 @@ class OrdersFactory extends Factory
     public function definition(): array
     {
         return [
-
-            'name' => $this->faker->name,
             'total' => $this->faker->numberBetween(1000,30000),
             'quantity' => $this->faker->numberBetween(1,10),
-            'payment_id' => $this->faker->randomDigit(),
-            'tracking' => $this->faker->randomDigit(1,3),
-
-
+            'reference' => $this->faker->randomDigit(),
+            'tracking' => $this->faker->numberBetween(0,2),
+            'table_id' => Table::all()->random()->id
         ];
     }
 }
