@@ -45,7 +45,7 @@
                                                 <div class="product">
                                                     <figure class="product-media">
                                                         <a href="#">
-                                                            <img src="assets/images/products/table/product-1.jpg"
+                                                            <img src="{{asset($item->model->menu_image)}}"
                                                                 alt="Product image">
                                                         </a>
                                                     </figure>
@@ -75,8 +75,8 @@
                                                     <input hidden name='rowId' value="{{ $item->rowId }}">
                                                     <button class="btn btn-outline-dark-2" type="submit"><span>UPDATE
                                                             CART</span><i class="icon-refresh"></i></button>
-                                                </td>
-                                            </form>
+                                             </form>     </td>
+
                                             <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
@@ -103,24 +103,10 @@
                                             <?php $total = str_replace(',', '', Cart::SubTotal()); ?>
                                             <td>${{ $total }}</td>
                                         </tr><!-- End .summary-subtotal -->
-                                        <tr class="summary-shipping">
-                                            <td>Shipping:</td>
-                                            <td>&nbsp;</td>
-                                        </tr>
-'
-                                        <tr class="summary-shipping-row">
-                                            <td>
-                                                <div class="custom-control custom-radio">
-                                                    <label class="custom-control-label" for="free-shipping">
-                                                        Shipping</label>
-                                                </div><!-- End .custom-control -->
-                                            </td>
-                                            <td>$10.00</td>
-                                        </tr><!-- End .summary-shipping-row -->
 
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>$ {{ $total + 10 }}</td>
+                                            <td>$ {{ $total }}</td>
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->

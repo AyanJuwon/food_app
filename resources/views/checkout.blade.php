@@ -26,6 +26,7 @@
                         <div class="row">
                             <div class="col-lg-9">
                                 <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+
                                 <div class="row">
                                     <div class="cl-sm-6">
                                         <label>Your Name*</label>
@@ -100,7 +101,7 @@
 
 
                                     </div><!-- End .accordion -->
-                                    <input type="hidden" id="reference" name="payment_id">
+                                    <input type="hidden" id="reference" name="reference">
                                     <input type="hidden" id="table" name="table_id" value=1>
                                     <a onclick="payWithPaystack('paid', {{ $total }}, '{{ \Illuminate\Support\Str::random(32) }}')"
                                         class="card-button-light-create"> <button type="button"
@@ -150,7 +151,7 @@
                 callback: function(response) {
                     if (response.message === 'Approved') {
 
-                        $('#reference').val(response.reference);
+                        $('#reference').val(ref);
                         $('form#checkoutForm').submit();
                     }
                 }
@@ -159,7 +160,7 @@
 
         }
 
-        //     
+        //
 
     </script>
 

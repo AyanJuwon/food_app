@@ -4,11 +4,12 @@
     <main class="main">
 
 
-        <div class="container m-5 justify-content-center">
 
-            <div class="page-content">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" style="margin: auto;
+                    width: 90%;s
+                    padding: 10px;
+                    }">
                         <div class="col-lg-9">
 
                             <div class="products mb-3">
@@ -19,7 +20,7 @@
                                                 <figure class="product-media">
 
                                                     <a href="{{ route('menu', $menu->id) }}">
-                                                        <img src="{{ asset('uploads/menu/' . $menu->menu_image) }}"
+                                                        <img src="{{ asset( $menu->menu_image) }}"
                                                             alt="Product image" class="product-image">
                                                     </a>
 
@@ -46,7 +47,7 @@
                                                 <div class="product-body">
                                                     <div class="product-cat">
                                                         <a
-                                                            href="{{ route('category', $menu->category_id) }}">{{ $menu->category }}</a>
+                                                            href="{{ route('category', $menu->category_id) }}">{{ $menu->category->name }}</a>
                                                     </div><!-- End .product-cat -->
                                                     <h3 class="product-title"><a
                                                             href="{{ route('menu', $menu->id) }}">{{ $menu->menu_name }}</a>
@@ -90,8 +91,8 @@
 
                     </div><!-- End .row -->
                 </div><!-- End .container -->
-            </div><!-- End .page-content -->
-        </div>
+
+
     </main><!-- End .main -->
 
 

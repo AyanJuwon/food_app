@@ -79,7 +79,7 @@ class UserController extends Controller
         $request->validate([
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->id(),
+            'email' => 'required|string|email|max:255|unique:users,email,',
             'password' => 'sometimes|nullable|string|min:6|confirmed',
         ]);
 
@@ -116,10 +116,10 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $orders = Orders::where('table_id', 1)->get();
         $categories = Category::all();
 
-        $orders_count = Orders::where('user_id', auth()->user()->id)->count();
+        $orders_count = Orders::where('table_id', 1)->count();
 
         return view('dashboard')
             ->with('orders', $orders)->with('categories', $categories)->with('orders_count', $orders_count);
@@ -129,7 +129,7 @@ class UserController extends Controller
     public function orders()
     {
         session()->put('backUrl', '/orders');
-        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $orders = Orders::where('table_id', 1)->get();
         $categories = Category::all();
         return view('orders')
             ->with('orders', $orders)->with('categories', $categories);
@@ -140,9 +140,7 @@ class UserController extends Controller
     public function viewOrderDetails(Orders $order)
     {
         session()->put('backUrl', '/my-order');
-        if (auth()->id() !== $order->user_id) {
-            return back()->withErrors('You do not have access to this!');
-        }
+
         $categories = Category::all();
         $orderDetails = OrderDetail::where('order_id', $order->id)->get();
         $order_id = $order->id;
@@ -159,7 +157,7 @@ class UserController extends Controller
     public function trackOrder($id)
     {
         session()->put('backUrl', '/tracking');
-        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $orders = Orders::where('table_id', 1)->get();
         $order = Orders::where('id', $id)->get();
         $tracked = Orders::where('id', $id)->where('tracking', 1)->get();
         $completed = Orders::where('tracking', 1)->get();
@@ -175,7 +173,7 @@ class UserController extends Controller
     public function savedItems()
     {
         session()->put('backUrl', '/saved-items');
-        $orders = Orders::where('user_id', auth()->user()->id)->get();
+        $orders = Orders::where('table_id', 1)->get();
         $wishlist = Cart::instance('wishlist')->content();
         $completed = Orders::where('tracking', 1)->get();
         $categories = Category::all();

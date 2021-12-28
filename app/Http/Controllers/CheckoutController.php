@@ -13,7 +13,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class CheckoutController extends Controller
 {
     //
-    
+
     public function checkout(Request $request)
     {
         $address = $request->input('address');
@@ -22,21 +22,21 @@ class CheckoutController extends Controller
             'table_id'=>'required',
             'email'=>'required',
             'phoneNumber'=>'required',
-           
+
         ]);
- $total = str_replace(',', '', Cart::SubTotal()); 
+ $total = str_replace(',', '', Cart::SubTotal());
               $order =  Orders::create([
                   'table_id'=>$request->table_id,
                'name'=>$request->name,
                 'tracking'=> 0 ,
-                'payment_id' => $request->payment_id,
+                'reference'=>$request->reference,
                 'total' => $total,
                ]);
       $customer = Customer::create([
         'name'=>$request->name,
         'email'=>$request->email,
         'phoneNumber'=>$request->phoneNumber,
-        
+
 
       ]);
             foreach(Cart::content() as $item){
@@ -48,8 +48,8 @@ class CheckoutController extends Controller
                 'price' => $item->model->menu_price * $item->qty,
             ]);}
         // Mail::to(auth()->user()->email)->send(new OrderPlaced($order));
- 
-        session()->flash('message', 'Order Completed, Ypu will be served in 30 nminues');
+
+        session()->flash('message', 'Order Completed, You will be served in 30 nminues');
         session()->flash('error', 'Order Failed');
 //     Mail::to('ayanniran@gmail.com')->send(new OrderPlaced($order,$email,$firstname))   ;
      Cart::instance('default')->destroy();

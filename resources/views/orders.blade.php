@@ -23,7 +23,7 @@
                                 <div class="product">
                                     <figure class="product-media">
                                         <a href="#">
-                                            <img src="{{ asset('uploads/menu/' . $menu->menu_image) }}"
+                                            <img src="{{ asset( $menu->menu_image) }}"
                                                 alt="Product image">
                                         </a>
                                     </figure>
@@ -59,7 +59,7 @@
 
                                     </a>
 
-                                
+
                             </td>
                             <td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
 

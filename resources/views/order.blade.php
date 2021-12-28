@@ -37,7 +37,7 @@
                                 <div class="story-card__body-story">
 
                                     <div class="story-card__body-left">
-                                        <img src="{{ asset('uploads/menu/' . $menu->menu_image) }}}"
+                                        <img src="{{ asset( $menu->menu_image) }}"
                                             alt="{{ $menu->menu_image }}" class="story-card__story-img">
                                     </div>
 
@@ -118,7 +118,7 @@
         setInterval(function() {
             refreshCheck();
             //   updateVisualTimer();
-        }, 1000);
+        }, 20000);
 
         // The code that checks if the window needs to reload
         function refreshCheck() {

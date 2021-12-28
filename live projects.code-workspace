@@ -4,13 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "..\\frontend"
-		},
-		{
-			"path": "..\\..\\tribute\\backend"
-		},
-		{
-			"path": "..\\..\\tribute\\frontend"
+			"path": "..\\..\\essential"
 		}
 	],
 	"settings": {
