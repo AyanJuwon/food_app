@@ -213,7 +213,48 @@
                                         </div>
                                     </form>
                                 </div>
+                                <div>
+
+
+
+                                </div>
+
+
+
+
+
+
                             </li>
+                            @foreach(\App\Models\Orders::where('tracking',0)->where('table_id',1)->orderBy('id','desc')->take(2)->get() as $latestOrders)
+
+                            <li class="list-inline-item">
+
+                            <div class="alert alert-warning">
+                                <h5>Order created at Table {{$latestOrders->table_id}} </h5>
+                                   </div>
+
+
+                                </li>
+                                   @endforEach
+
+                            <li class="list-inline-item">
+
+
+
+
+                                                @if (session()->has('message'))
+                                           <div class="alert alert-success">
+                                               {{ session('message')    }}
+                                           </div>
+                                       @endif
+
+                                <div>
+
+
+
+                                </div>
+                            <li>
+
                         </ul>
                     </div>
                     <div class="infobar">
@@ -251,11 +292,24 @@
             <!-- End row -->
         </div>
         <!-- End Topbar -->
+
+
+             @if (session()->has('message'))
+        <div class="alert alert-success">
+            {{ session('message')    }}
+        </div>
+    @endif
         @yield('content')
     </div>
     <!-- End Rightbar -->
 </div>
 
+
+            @if (session()->has('message'))
+       <div class="alert alert-success">
+           {{ session('message')    }}
+       </div>
+   @endif
 <!-- Start Footerbar -->
 <div class="footerbar">
     <footer class="footer">

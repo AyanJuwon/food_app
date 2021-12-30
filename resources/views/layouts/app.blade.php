@@ -44,6 +44,22 @@
             <div class="header-top">
                 <div class="container">
 
+                    @if (session()->has('orderComplete'))
+    <div class="alert alert-success">
+        {{ session('orderComplete')    }}
+    </div>
+@endif
+@if (session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session('error')    }}
+    </div>
+@endif
+@if (session()->has('success'))
+    <div class="alert alert-success">
+        {{ session('success')    }}
+    </div>
+@endif
+
 
                     @include('partials.success')
                     @include('partials.list_error')
@@ -61,7 +77,7 @@
                                 <i class="icon-bars"></i>
                             </button>
                             <a href="/" class="logo">
-                                <img src="assets/images/demos/demo-14/logo.png" alt="Molla Logo" width="105"
+                                <img src="{{asset('assets/images/demos/demo-14/logo.png')}}" alt="Molla Logo" width="105"
                                     height="25">
                             </a>
                         </div><!-- End .col-xl-3 col-xxl-2 -->

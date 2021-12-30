@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@if (session()->has('message'))
+    <div class="alert alert-success">
+        {{ session('message')    }}
+    </div>
+@endif
 @section('content')
 
     <main class="main">
@@ -40,7 +44,7 @@
                                 @else
                                     <p>No order has been made yet.</p>
                                 @endif
-                                <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
+                                <a href="{{route('menus.search')}}" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
                                         class="icon-long-arrow-right"></i></a>
                                 </div><!-- .End .tab-pane -->
 
@@ -51,7 +55,7 @@
                                     @else
                                         <p>No order has been made yet.</p>
                                     @endif
-                                    <a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
+                                    <a href="{{route('menus.search')}}" class="btn btn-outline-primary-2"><span>GO SHOP</span><i
                                             class="icon-long-arrow-right"></i></a>
                                 </div><!-- .End .tab-pane -->
 
@@ -66,3 +70,12 @@
 
 
 @endsection
+
+@section('scripts')
+<script>
+
+
+setTimeout(function(){
+    window.location.reload()
+}, 120000);
+    </script>

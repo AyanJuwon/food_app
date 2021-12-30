@@ -19,7 +19,7 @@ class OrdersController extends Controller
     {
         // $orders = auth()->user()->orders; // n + 1 issues
 
-        $orders = auth()->user()->orders()->with('products')->get(); // fix n + 1 issues
+        $orders = auth()->user()->orders()->with('products')->orderBy('id','desc')->get(); // fix n + 1 issues
          $categories = Category::all();
         return view('my-orders')->with('orders', $orders)->with('categories',$categories);
     }

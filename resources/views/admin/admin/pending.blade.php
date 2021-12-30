@@ -24,6 +24,56 @@
     <!-- Responsive Datatable css -->
     <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
+        <style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 10px 0px 10px 0px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+ .dropdown:hover .dropbtn, .dropbtn:focus {
+ 
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+</style>
 
 @endsection
 @section('content')
@@ -60,8 +110,8 @@
                                 </td>
 
                                 <td class="column6">${{ $order->total }}</td>
-                                <td class="column7">{{ $order->payment_id }}</td>
-                                <td class="column8">
+                                <td class="column7">{{ $order->reference}}</td>
+                                <td class="column8 ">
                                     <form hidden id="completeForm"
                                         action="{{ route('admin.completeOrder', [$order->id]) }}" method="post">
                                         @csrf<button type="submit" class="btn btn-success">Complete Order</button></form>
@@ -69,9 +119,17 @@
                                         method="post">
                                         @csrf<button type="submit" class="btn btn-danger">Cancel Order</button></form>
 
-                                    <p><a href="#" class="text-success" onclick="event.preventDefault();document.getElementById('completeForm').submit();
-        ">Complete Order</a>/<a href="#" onclick="event.preventDefault();document.getElementById('cancelForm').submit();
-        " class="text-danger">Cancel Order</a></p>
+                                        <div class="dropdown">
+                                            <button class="dropbtn" onclick="myFunction()">Action
+                                              <i class="fa fa-caret-down"></i>
+                                            </button>
+                                            <div class="dropdown-content" id="myDropdown">
+                                               <a href="" class="text-success" onclick="event.preventDefault();document.getElementById('completeForm').submit();">Complete Order</a>
+
+        <a href="" onclick="event.preventDefault();document.getElementById('cancelForm').submit();" class="text-danger">Cancel Order</a>
+                                            </div>
+                                            </div>
+
             </div>
             </td>
             <td class="column9"><a href="{{ route('adminViewOrder', $order) }}" class="text-primary">See Details</a></td>
@@ -98,6 +156,24 @@
     <!--===============================================================================================-->
     <script src="{{ asset('asset/script/main.js') }}"></script>
 
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+    console.log('clicked')
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>

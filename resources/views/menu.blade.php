@@ -41,8 +41,8 @@
                                         <div class="row">
                                             <figure class="product-main-image">
                                                 <img id="product-zoom"
-                                                    src="{{ asset('uploads/menu/' . $menu->menu_image) }}"
-                                                    data-zoom-image="{{ asset('uploads/menu/' . $menu->menu_image) }}"
+                                                    src="{{ asset( $menu->menu_image) }}"
+                                                    data-zoom-image="{{ asset( $menu->menu_image) }}"
                                                     alt="product image">
 
                                                 <a href="#" id="btn-product-gallery" class="btn-product-gallery">
@@ -59,11 +59,10 @@
                                     <div class="product-details">
                                         <h1 class="product-title">{{ $menu->menu_name }}</h1>
                                         <!-- End .product-title -->
-                                        @csrf
-                                        <div class="ratings-container">
+
 
                                             <div class="product-price">
-                                                ${{ $menu->menu_price }}
+                                             Price:   ${{ $menu->menu_price }}
                                             </div><!-- End .product-price -->
 
                                             <div class="product-content">
@@ -84,35 +83,21 @@
                                                 </div><!-- End .details-filter-row -->
 
                                                 <div class="product-details-action">
-                                                    <button href="#" type="submit"
-                                                        class="btn-product btn-cart mb-3"><span>add to
+                                                    <button  type="submit"
+                                                        class="btn btn-cart mb-3"><span>Add to
                                                             cart</span></button>
                                             </form>
                                             <div class="mb-3"></div>
                                             <div class="details-action-wrapper">
-                                                <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add
-                                                        to
-                                                        Wishlist</span></a>
-                                            </div><!-- End .details-action-wrapper -->
-                                        </div><!-- End .product-details-action -->
 
                                         <div class="product-details-footer">
                                             <div class="product-cat">
                                                 <span>Category:</span>
-                                                <a href="#">{{ $menu->category }}</a>
+                                                        <a href="{{ route('category', $menu->category->id) }}"
+                                                        >{{ $menu->category->name }}</a>
                                             </div><!-- End .product-cat -->
 
-                                            <div class="social-icons social-icons-sm">
-                                                <span class="social-label">Share:</span>
-                                                <a href="#" class="social-icon" title="Facebook" target="_blank"><i
-                                                        class="icon-facebook-f"></i></a>
-                                                <a href="#" class="social-icon" title="Twitter" target="_blank"><i
-                                                        class="icon-twitter"></i></a>
-                                                <a href="#" class="social-icon" title="Instagram" target="_blank"><i
-                                                        class="icon-instagram"></i></a>
-                                                <a href="#" class="social-icon" title="Pinterest" target="_blank"><i
-                                                        class="icon-pinterest"></i></a>
-                                            </div>
+
                                         </div><!-- End .product-details-footer -->
                                     </div><!-- End .product-details -->
                                 </div><!-- End .col-md-6 -->
@@ -127,11 +112,7 @@
                                     role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" id="product-shipping-link" data-toggle="tab"
-                                    href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab"
-                                    aria-selected="false">Shipping & Returns</a>
-                            </li>
+
 
                         </ul>
                         <div class="tab-content">
@@ -145,18 +126,7 @@
                             </div><!-- .End .tab-pane -->
                             <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
                                 aria-labelledby="product-shipping-link">
-                                <div class="product-desc-content">
-                                    <h3>Delivery & returns</h3>
-                                    <p>We deliver to over 100 countries around the world. For full details of the
-                                        delivery
-                                        options we offer, please view our <a href="#">Delivery information</a><br>
-                                        We hope you’ll love every purchase, but if you ever need to return an item
-                                        you
-                                        can
-                                        do so within a month of receipt. For full details of how to make a return,
-                                        please
-                                        view our <a href="#">Returns information</a></p>
-                                </div><!-- End .product-desc-content -->
+
                             </div><!-- .End .tab-pane -->
                         </div><!-- End .tab-content -->
                     </div><!-- End .product-details-tab -->

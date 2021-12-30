@@ -111,7 +111,7 @@
                         <h2 class="mu-slider-title">To The OsteriaX</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non
                             quidem, deleniti optio.</p>
-                        {{-- <a href="{{route('menus')}}" class="mu-readmore-btn mu-reservation-btn">PLACE AN ORDER</a> --}}
+                        <a href="{{route('menus.search')}}" class="mu-readmore-btn mu-reservation-btn">PLACE AN ORDER</a>
                     </div>
                     <!-- / Top slider content -->
                 </div>
@@ -126,7 +126,7 @@
                         <h2 class="mu-slider-title">Italian Restaurant</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non
                             quidem, deleniti optio.</p>
-                        {{-- <a href="{{route('menus')}}" class="mu-readmore-btn mu-reservation-btn">PLACE AN ORDER</a> --}}
+                        <a href="{{route('menus.search')}}" class="mu-readmore-btn mu-reservation-btn">PLACE AN ORDER</a>
                     </div>
                     <!-- / Top slider content -->
                 </div>
@@ -141,7 +141,7 @@
                         <h2 class="mu-slider-title">Spicy Masalas</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non
                             quidem, deleniti optio.</p>
-                        {{-- <a href="{{route('menus')}}" class="mu-readmore-btn mu-reservation-btn">PLACE AN ORDER</a> --}}
+                        <a href="{{route('menus.search')}}" class="mu-readmore-btn mu-reservation-btn">PLACE AN ORDER</a>
                     </div>
                     <!-- / Top slider content -->
                 </div>
@@ -264,10 +264,9 @@
                         <div class="mu-restaurant-menu-content">
                             <ul class="nav nav-tabs mu-restaurant-menu">
                                 <li class="active"><a href="#breakfast" data-toggle="tab">Swallow</a></li>
-                                <li><a href="#meals" data-toggle="tab">Meals</a></li>
-                                <li><a href="#snacks" data-toggle="tab">Snacks</a></li>
-                                <li><a href="#desserts" data-toggle="tab">Desserts</a></li>
-                                <li><a href="#drinks" data-toggle="tab">Drinks</a></li>
+                                <li><a href="#meals" data-toggle="tab">Sides</a></li>
+                                <li><a href="#snacks" data-toggle="tab">Combo</a></li>
+                                <li><a href="#desserts" data-toggle="tab">Breakfast</a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -283,15 +282,15 @@
                                                             <li>
                                                                 <div class="media">
                                                                     <div class="media-left">
-                                                                        <a href="#">
+                                                                        <a href="{{ route('menu', $swallow->id) }}">
                                                                             <img class="media-object"
-                                                                                src="{{ asset('assets/img/menu/item-1.jpg ') }}"
+                                                                                src="{{ asset($swallow->menu_image) }}"
                                                                                 alt="img">
                                                                         </a>
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h4 class="media-heading"><a
-                                                                                href="#">{{ $swallow->menu_name }}</a>
+                                                                                href="{{ route('menu', $swallow->id) }}">{{ $swallow->menu_name }}</a>
                                                                         </h4>
                                                                         <span
                                                                             class="mu-menu-price">${{ $swallow->menu_price }}</span>
@@ -322,19 +321,19 @@
                                                             <li>
                                                                 <div class="media">
                                                                     <div class="media-left">
-                                                                        <a href="#">
+                                                                        <a href="{{ route('menu', $combo->id) }}">
                                                                             <img class="media-object"
-                                                                                src="{{ asset('assets/img/menu/item-3.jpg ') }}"
+                                                                                src="{{ asset($combo->menu_image) }}"
                                                                                 alt="img">
                                                                         </a>
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h4 class="media-heading"><a
-                                                                                href="#">{{ $combo->menu_name }}</a>
+                                                                                href="{{ route('menu', $combo->id) }}">{{ $combo->menu_name }}</a>
                                                                         </h4>
                                                                         <span
                                                                             class="mu-menu-price">${{ $combo->menu_price }}</span>
-                                                                        <p>{{ $$combo->menu_description }}</p>
+                                                                        <p>{{ $combo->menu_description }}</p>
                                                                     </div>
                                                                 </div>
                                                             </li>
@@ -362,15 +361,15 @@
                                                             <li>
                                                                 <div class="media">
                                                                     <div class="media-left">
-                                                                        <a href="#">
+                                                                        <a href="{{ route('menu', $sides->id) }}">
                                                                             <img class="media-object"
-                                                                                src="{{ asset('assets/img/menu/item-5.jpg ') }}"
+                                                                                src="{{ asset($sides->menu_image) }}"
                                                                                 alt="img">
                                                                         </a>
                                                                     </div>
                                                                     <div class="media-body">
                                                                         <h4 class="media-heading"><a
-                                                                                href="#">{{ $sides->memu_name }}</a>
+                                                                                href="{{ route('menu', $sides->id) }}">{{ $sides->memu_name }}</a>
                                                                         </h4>
                                                                         <span
                                                                             class="mu-menu-price">${{ $sides->menu_price }}</span>
@@ -399,15 +398,14 @@
                                                         <li>
                                                             <div class="media">
                                                                 <div class="media-left">
-                                                                    <a href="#">
+                                                                    <a href="{{ route('menu', $breakfast->id) }}">
                                                                         <img class="media-object"
-                                                                            src="{{ asset('assets/img/menu/item-7.jpg ') }}"
+                                                                            src="{{ asset($breakfast->menu_image) }}"
                                                                             alt="img">
                                                                     </a>
                                                                 </div>
                                                                 <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="#">English
-                                                                            Breakfast</a></h4>
+                                                                    <h4 class="media-heading"><a href="{{ route('menu', $breakfast->id) }}">{{$breakfast->menu_name}}t</a></h4>
                                                                     <span class="mu-menu-price">$15.85</span>
                                                                     <p>Lorem ipsum dolor sit amet, consectetur
                                                                         adipisicing elit. Facere nulla aliquid

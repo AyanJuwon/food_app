@@ -48,24 +48,10 @@ class CheckoutController extends Controller
                 'price' => $item->model->menu_price * $item->qty,
             ]);}
         // Mail::to(auth()->user()->email)->send(new OrderPlaced($order));
-
-        session()->flash('message', 'Order Completed, You will be served in 30 nminues');
-        session()->flash('error', 'Order Failed');
+session()->flash('notification-admin','Order created at'.$order->table_id);
+        session()->flash('message', 'Order Completed, You will be served in 30 minutes');
 //     Mail::to('ayanniran@gmail.com')->send(new OrderPlaced($order,$email,$firstname))   ;
      Cart::instance('default')->destroy();
-        return redirect()->route('dashboard');
+        return redirect()->route('myOrder',$order->id);
     }
-// private function sendMail(){
-
-
-//     $details = [
-//         'title' => 'Mail from ItSolutionStuff.com',
-//         'body' => 'This is for testing email using smtp'
-//     ];
-
-//     \Mail::to('ayanniran@gmail.com')->send(new \App\Mail\MyTestMail($details));
-
-//     dd("Email is Sent.");
-
-// }
 }

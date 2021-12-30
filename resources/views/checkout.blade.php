@@ -27,7 +27,7 @@
                             <div class="col-lg-9">
                                 <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
 
-                                <div class="row">
+                                <div class="row container">
                                     <div class="cl-sm-6">
                                         <label>Your Name*</label>
                                         <input type="text" class="form-control" placeholder="Your name" name="name"

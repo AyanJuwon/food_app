@@ -60,12 +60,12 @@
                                             @if ($order->tracking == 1)
 
                                                 <span class="in-stock text-success">Ready</span>
-                                                <?php session()->flash('message', 'your order with id' .
-                                                $order->id . 'and ' . $order->payment_id . ' is ready'); ?>
+                                                <?php session()->flash('message', 'your order with id ' .
+                                                $order->id . ' is ready'); ?>
                                             @else
                                                 @if ($order->tracking == 2)
-                                                    <?php session()->flash('error', 'your order with id' .
-                                                    $order->id . 'and ' . $order->payment_id . ' is cancelled'); ?>
+                                                    <?php session()->flash('error', 'your order with id ' .
+                                                    $order->id . 'and ' . $order->reference . ' has been cancelled, you will be refunded shortly'); ?>
                                                     <span class="out-of-stock text-danger">Cancelled</span>
                                                 @endif
 
@@ -118,7 +118,7 @@
         setInterval(function() {
             refreshCheck();
             //   updateVisualTimer();
-        }, 20000);
+        }, 120000);
 
         // The code that checks if the window needs to reload
         function refreshCheck() {

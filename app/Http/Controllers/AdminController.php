@@ -133,7 +133,8 @@ class AdminController extends Controller
         Orders::where('id',$id)->update(['tracking'=>1]);
         // Orders::update('tracking',1 );
         // create notification db, add useer id and message. then notify user
-        session()->flash('message', 'Order completed successfully');
+        session()->flash('message', 'Order with id '. $id.' completed successfully');
+        session()->flash('success', 'Order with id '.$id.' completed successfully');
 
         // return response()->json(['success' => true]);
         return redirect()->back();
@@ -146,7 +147,8 @@ class AdminController extends Controller
         Orders::where('id',$id)->update(['tracking'=>2]);
         // Orders::update('tracking',2 );
 
-        session()->flash('message', 'Order cancelled successfully');
+        session()->flash('message', 'Order with id '. $id.' cancelled successfully');
+        session()->flash('error', 'Order with id ' .$id. ' cancelled successfully');
         return redirect()->back();
     }
 

@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: OpenSans-Regular;
-  src: url('../fonts/OpenSans/OpenSans-Regular.ttf'); 
+  src: url('../fonts/OpenSans/OpenSans-Regular.ttf');
 }
 
 
@@ -14,8 +14,8 @@
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -126,7 +126,7 @@ table {
   border-collapse: collapse;
   background: white;
   border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -148,10 +148,10 @@ table tbody tr:last-child {
   border: 0;
 }
 table td, table th {
-  text-align: left;
+  text-align: center;
 }
 table td.l, table th.l {
-  text-align: right;
+  text-align: center;
 }
 table td.c, table th.c {
   text-align: center;
@@ -193,27 +193,40 @@ tbody tr:hover {
 }
 
 .column2 {
-  width: 160px;
+  width: 100px;
 }
 
 .column3 {
   width: 245px;
+  text-align: center;
 }
 
 .column4 {
   width: 110px;
-  text-align: right;
+  text-align: center;
 }
 
 .column5 {
   width: 170px;
-  text-align: right;
+
+  text-align: center;
 }
 
 .column6 {
   width: 222px;
-  text-align: right;
   padding-right: 62px;
+
+  text-align: center;
+}
+.column8 {
+  width: 200px;
+  /* padding-right: 62px; */
+  text-align: left;
+}
+.column9 {
+  width: 152px;
+  /* padding-right: px; */
+  text-align:left;
 }
 
 

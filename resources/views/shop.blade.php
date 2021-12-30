@@ -6,11 +6,11 @@
 
 
                 <div class="container">
-                    <div class="row" style="margin: auto;
+                    <div class="row mt-5" style="margin: auto;
                     width: 90%;s
                     padding: 10px;
                     }">
-                        <div class="col-lg-9">
+                        <div class="col-lg-12">
 
                             <div class="products mb-3">
                                 <div class="row justify-content-center">

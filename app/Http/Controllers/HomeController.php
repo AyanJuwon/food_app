@@ -27,11 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         $menu = Menu::paginate(16);
-        $swallow = Category::where('name', 'swallow')->take(3);
-        $combo = Category::where('name', 'combo')->take(3);
+        $swallow = Menu::where('category_id', 1 )->get()->take(3);
+
+        $combo =Menu::where('category_id', 2)->get()->take(3);
         // $drinks = Category::where('name','drinks')->take(3);
-        $sides = Category::where('name', 'sides')->take(3);
-        $breakfast = Category::where('name', 'breakfast')->take(3);
+        $sides = Menu::where('category_id', 3)->get()->take(3);
+
+        $breakfast = Menu::where('category_id',4)->get()->take(3);
         $categories = Category::all();
         return view('index')->with('menu', $menu)->with('categories', $categories)->with('swallow', $swallow)
             ->with('combo', $combo)

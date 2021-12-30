@@ -116,7 +116,7 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $orders = Orders::where('table_id', 1)->get();
+        $orders = Orders::where('table_id', 1)->orderBy('id','desc')->get()->take(5);
         $categories = Category::all();
 
         $orders_count = Orders::where('table_id', 1)->count();
@@ -129,7 +129,8 @@ class UserController extends Controller
     public function orders()
     {
         session()->put('backUrl', '/orders');
-        $orders = Orders::where('table_id', 1)->get();
+        $orders = Orders::where('table_id', 1)->orderBy('id','desc')->get()->take(5);
+        dd($orders);
         $categories = Category::all();
         return view('orders')
             ->with('orders', $orders)->with('categories', $categories);
