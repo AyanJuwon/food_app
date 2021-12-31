@@ -12,16 +12,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CategoriesController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
@@ -42,7 +32,7 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::patch('/cart/{rowId}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 
     Route::get('shop', [App\Http\Controllers\UserController::class, 'index'])->name('menus');
-    
+
     Route::get('shop', [App\Http\Controllers\HomeController::class, 'search'])->name('menus.search');
 
     Route::get('shop/{category}', [App\Http\Controllers\UserController::class, 'categoryFilter'])->name('category');
@@ -64,7 +54,7 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('cancelled', [App\Http\Controllers\AdminController::class ,'adminViewCancelledOrders'])->name('admin.cancelled');
 
     Route::get('completed', [App\Http\Controllers\AdminController::class,'adminViewCompletedOrders'])->name('admin.completed');
-    
+
     Route::get('orderDetails/{order}', [App\Http\Controllers\AdminController::class,'viewOrderDetails'])->name('adminViewOrder');
 
     Route::post('/pending/complete/{id}',[App\Http\Controllers\AdminController::class, 'completeOrders'])->name('admin.completeOrder');
@@ -98,23 +88,6 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
 
     Route::get('/failed-checkout', [App\Http\Controllers\UserController::class, 'checkoutFailed'])->name('payment.failed');
 
-
-
-
-
-
-//     Route::get('send-mail', function () {
-
-//     $details = [
-//         'title' => 'Mail from ItSolutionStuff.com',
-//         'body' => 'This is for testing email using smtp'
-//     ];
-
-//     Mail::to('ayanniran@gmail.com')->send(new MyTestMail($details));
-
-//     dd("Email is Sent.");
-// })->name('sendMail');
-// });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

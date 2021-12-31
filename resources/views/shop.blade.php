@@ -14,7 +14,7 @@
 
                             <div class="products mb-3">
                                 <div class="row justify-content-center">
-                                    @foreach ($menus as $menu)
+                                    @forelse ($menus as $menu)
                                         <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                             <div class="product product-7 text-center">
                                                 <figure class="product-media">
@@ -61,7 +61,11 @@
                                                 </div><!-- End .product-body -->
                                             </div><!-- End .product -->
                                         </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
-                                    @endforeach
+                                    @empty
+                                        <div class="col-lg-12 col-md-6 col-sm-12">
+                                            <h2>{{ 'No products found for' .' '. request()->query('search') }}</h2>
+                                        </div>
+                                    @endforelse
 
                                 </div><!-- End .row -->
                             </div><!-- End .products -->
@@ -69,22 +73,11 @@
 
                             <nav aria-label="Page navigation">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled">
-                                        <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1"
-                                            aria-disabled="true">
-                                            <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
-                                        </a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item-total">of 6</li>
-                                    <li class="page-item">
-                                        <a class="page-link page-link-next" href="#" aria-label="Next">
-                                            Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                                        </a>
-                                    </li>
+                                    <div class="pro-pagination-style text-center mt-55">
+                                        <ul>
+                                            {{ $menus->appends(['search' => request()->query('search')])->links() }}
+                                        </ul>
+                                    </div>
                                 </ul>
                             </nav>
                         </div><!-- End .col-lg-9 -->

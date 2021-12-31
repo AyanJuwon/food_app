@@ -17,41 +17,42 @@ class CheckoutController extends Controller
     public function checkout(Request $request)
     {
         $address = $request->input('address');
-       $request->validate([
+        $request->validate([
             'name' => 'required',
-            'table_id'=>'required',
-            'email'=>'required',
-            'phoneNumber'=>'required',
+            'table_id' => 'required',
+            'email' => 'required',
+            'phoneNumber' => 'required',
 
         ]);
- $total = str_replace(',', '', Cart::SubTotal());
-              $order =  Orders::create([
-                  'table_id'=>$request->table_id,
-               'name'=>$request->name,
-                'tracking'=> 0 ,
-                'reference'=>$request->reference,
-                'total' => $total,
-               ]);
-      $customer = Customer::create([
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'phoneNumber'=>$request->phoneNumber,
+        $total = str_replace(',', '', Cart::SubTotal());
+        $order = Orders::create([
+            'table_id' => $request->table_id,
+            'name' => $request->name,
+            'tracking' => 0,
+            'reference' => $request->reference,
+            'total' => $total,
+        ]);
+        $customer = Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phoneNumber' => $request->phoneNumber,
 
 
-      ]);
-            foreach(Cart::content() as $item){
-                OrderDetail::create([
+        ]);
+        foreach (Cart::content() as $item) {
+            OrderDetail::create([
                 'order_id' => $order->id,
                 'menu_id' => $item->model->id,
                 'quantity' => $item->qty,
                 'menu_name' => $item->model->menu_name,
                 'price' => $item->model->menu_price * $item->qty,
-            ]);}
+            ]);
+        }
         // Mail::to(auth()->user()->email)->send(new OrderPlaced($order));
-session()->flash('notification-admin','Order created at'.$order->table_id);
+        session()->flash('notification-admin', 'Order created at' . $order->table_id);
         session()->flash('message', 'Order Completed, You will be served in 30 minutes');
 //     Mail::to('ayanniran@gmail.com')->send(new OrderPlaced($order,$email,$firstname))   ;
-     Cart::instance('default')->destroy();
-        return redirect()->route('myOrder',$order->id);
+        Cart::instance('default')->destroy();
+        return redirect()->route('myOrder', $order->id);
     }
 }

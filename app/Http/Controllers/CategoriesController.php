@@ -15,9 +15,9 @@ class CategoriesController extends Controller
     public function index()
     {
         //
-        
+
         $categories = Category::all();
-        return view('admin.categories.index')->with('categories',$categories);
+        return view('admin.categories.index')->with('categories', $categories);
     }
 
     /**
@@ -29,13 +29,13 @@ class CategoriesController extends Controller
     {
         //
         $categories = Category::all();
-        return view('admin.categories.create')->with('categories',$categories);
+        return view('admin.categories.create')->with('categories', $categories);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,18 +44,18 @@ class CategoriesController extends Controller
         $request->validate([
             'name' => 'required|unique:categories'
         ]);
- Category::create([
+        Category::create([
             'name' => $request->name,
         ]);
-    session()->flash('success','Category created succesfully');
-    return view('admin.categories.create');
+        session()->flash('success', 'Category created succesfully');
+        return view('admin.categories.create');
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,13 +66,13 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($category)
     {
         //
-         $category = Category::where('id', $category)->firstOrFail();
+        $category = Category::where('id', $category)->firstOrFail();
         return view('admin.categories.create')
             ->with('data', $category);
     }
@@ -80,8 +80,8 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $category)
@@ -102,13 +102,13 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($category)
     {
         //
-         $category = category::where('id', $category)->firstOrFail();
+        $category = category::where('id', $category)->firstOrFail();
 
         $category->delete();
 

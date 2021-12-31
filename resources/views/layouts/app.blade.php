@@ -93,7 +93,7 @@
                                                 @csrf
 
                                                 <label for="search" class="sr-only">Search</label>
-                                                <input type="search" class="form-control" name="search" id="q"
+                                                <input type="search" value="{{request()->query('search')}}" class="form-control" name="search" id="q"
                                                     placeholder="Search product ..." required>
 
                                                 <button class="btn btn-primary" type="submit"><i
