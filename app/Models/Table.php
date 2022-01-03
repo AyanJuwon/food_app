@@ -11,8 +11,12 @@ class Table extends Model
 
     protected $fillable = ['table_name'];
 
-     public function order()
+    public function order()
     {
         return $this->belongsTo('App\Models\Orders');
+    }
+
+    public static function totalTables(){
+        return self::all()->count();
     }
 }

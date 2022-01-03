@@ -72,16 +72,15 @@
                                                 <div class="single-dropdown">
                                                     <div class="dropdown">
                                                         <a class="btn btn-primary-rgba dropdown-toggle" href="#"
-                                                            role="button" id="dropdowncategoriesLink" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
+                                                           role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                                           aria-haspopup="true" aria-expanded="false">
                                                             Action
                                                         </a>
-                                                        <div class="dropdown-categories"
-                                                            aria-labelledby="dropdowncategoriesLink">
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                                                               href="{{ route('categories.edit', $category->id) }}">Edit</a>
                                                             <a class="dropdown-item"
-                                                                onclick="handleDelete('{{ $category->id }}')">Delete</a>
+                                                               onclick="handleDelete('{{ $category->id }}')">Delete</a>
                                                         </div>
                                                     </div>
                                                 </div>

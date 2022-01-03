@@ -91,5 +91,6 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('/failed-checkout', [App\Http\Controllers\UserController::class, 'checkoutFailed'])->name('payment.failed');
 
 Auth::routes();
+Route::get('/admin-dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -68,11 +68,11 @@
                                     @foreach ($menus as $menu)
                                         <tr>
                                             <td>{{ $menu->menu_name }}</td>
-                                            <td>{{ $menu->amount }}</td>
-                                            <td>{{ $menu->category }}</td>
+                                            <td>{{ number_format($menu->menu_price) }}</td>
+                                            <td>{{ $menu->category->name }}</td>
                                             <td>{{ $menu->created_at->toDateString() }}</td>
                                             <td>
-                                                <a href="{{ route('menu.show', $menu->id) }}" type="button"
+                                                <a href="{{ route('menus.show', $menu->id) }}" type="button"
                                                     class="btn btn-primary-rgba"><i class="feather icon-send mr-2"></i>
                                                     View</a>
                                             </td>
@@ -86,7 +86,7 @@
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                             <a class="dropdown-item"
-                                                                href="{{ route('menu.edit', $menu->id) }}">Edit</a>
+                                                                href="{{ route('menus.edit', $menu->id) }}">Edit</a>
                                                             <a class="dropdown-item"
                                                                 onclick="handleDelete('{{ $menu->id }}')">Delete</a>
                                                         </div>
@@ -128,7 +128,7 @@
                 keyboard: false
             });
             var form = document.getElementById('deleteForm');
-            var url = '{{ route('menu.destroy', [':id']) }}';
+            var url = '{{ route('menus.destroy', [':id']) }}';
             url = url.replace(':id', id);
             form.action = url;
         }

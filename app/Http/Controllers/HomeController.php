@@ -61,4 +61,8 @@ class HomeController extends Controller
             ->with('categories', $categories);
 
     }
+
+    public function dashboard(){
+        return view('admin.home');
+    }
 }
