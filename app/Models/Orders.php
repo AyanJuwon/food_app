@@ -32,4 +32,24 @@ class Orders extends Model
     {
         return $this->hasOne(Table::class);
     }
+
+    public static function totalAmount(){
+        return self::all()->sum('total');
+    }
+
+    public static function totalQueuedOrders(){
+        return self::where('tracking',0)->count();
+    }
+
+    public static function totalProcessingOrders(){
+        return self::where('tracking',1)->count();
+    }
+
+    public static function totalCanceledOrders(){
+        return self::where('tracking',3)->count();
+    }
+
+    public static function totalCompletedOrders(){
+        return self::where('tracking',2)->count();
+    }
 }

@@ -94,7 +94,7 @@
             <div class="navigationbar">
                 <ul class="vertical-menu">
                     <li>
-                        <a href="{{route('home')}}">
+                        <a href="{{route('admin.dashboard')}}">
                             <img src="{{asset('asset/images/svg-icon/dashboard.svg')}}" class="img-fluid" alt="dashboard"><span>Dashboard</span>
                         </a>
                     </li>
@@ -125,14 +125,6 @@
                         <ul class="vertical-submenu">
                             <li><a href="{{route('menus.index')}}">All menus</a></li>
                             <li><a href="{{route('menus.create')}}">Add menu</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javaScript:void();">
-                            <img src="{{asset('asset/images/svg-icon/form_elements.svg')}}" class="img-fluid" alt="form_elements"><span>Manage User(s)</span><i class="feather icon-chevron-right pull-right"></i>
-                        </a>
-                        <ul class="vertical-submenu">
-                            <li><a href="{{route('users')}}">All Users</a></li>
                         </ul>
                     </li>
                     <li>
@@ -277,7 +269,7 @@
                                             <ul class="list-unstyled">
                                                 @foreach(\App\Models\Orders::where('tracking',0)->where('table_id',1)->orderBy('id','desc')->take(2)->get() as $latestOrders)
 
-                                              <a href="{{ route('adminViewOrder', $order) }}" >  <li class="media dropdown-item">
+                                              <a href="{{ route('adminViewOrder', $latestOrders) }}" >  <li class="media dropdown-item">
                                                     <span class="action-icon badge badge-primary-inverse"><i class="feather fas fa-receiptr"></i></span>
                                                     <div class="media-body">
                                                         <h5 class="action-title">Order at table {{$latestOrders->table_id}}</h5>
