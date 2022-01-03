@@ -31,11 +31,11 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
 
     Route::patch('/cart/{rowId}', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
 
-    Route::get('shop', [App\Http\Controllers\UserController::class, 'index'])->name('menus');
+    Route::get('menu-list', [App\Http\Controllers\UserController::class, 'index'])->name('menus.list');
 
-    Route::get('shop', [App\Http\Controllers\HomeController::class, 'search'])->name('menus.search');
+    Route::get('menu-list/search', [App\Http\Controllers\HomeController::class, 'search'])->name('menus.search');
 
-    Route::get('shop/{category}', [App\Http\Controllers\UserController::class, 'categoryFilter'])->name('category');
+    Route::get('menu-list/{category}', [App\Http\Controllers\UserController::class, 'categoryFilter'])->name('category');
 
     Route::get('menu/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('menu');
 
@@ -56,6 +56,8 @@ Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
     Route::get('completed', [App\Http\Controllers\AdminController::class,'adminViewCompletedOrders'])->name('admin.completed');
 
     Route::get('orderDetails/{order}', [App\Http\Controllers\AdminController::class,'viewOrderDetails'])->name('adminViewOrder');
+
+    Route::post('/pending/process/{id}',[App\Http\Controllers\AdminController::class, 'processOrders'])->name('admin.processOrder');
 
     Route::post('/pending/complete/{id}',[App\Http\Controllers\AdminController::class, 'completeOrders'])->name('admin.completeOrder');
 

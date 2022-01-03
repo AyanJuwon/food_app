@@ -36,7 +36,6 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
 
         // Function to add to cart from menus page
         $duplicates = Cart::search(function ($cartItem, $rowId) use ($request){
@@ -57,8 +56,6 @@ class CartController extends Controller
             'name' => $request->menu_name,
             'qty' => $request->qty,
             'price' => $request->menu_price,
-//            'delivery' => $delivery,
-            // 'options' => ['delivery' => 2]
 
         ])
             ->associate('App\Models\Menu');
@@ -79,7 +76,7 @@ class CartController extends Controller
 
         session()->flash('message', 'Item was added to your cart Successfully');
 
-        return redirect()->back();
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -92,21 +89,6 @@ class CartController extends Controller
     {
         $item = Cart::get($id);
 
-
-        // Cart::add($menu->id, $menu->name, 1, $menu->price)
-        //     ->associate('App\menu');
-
-        // Function to add to cart from menus page
-        // $duplicates = Cart::instance('wishlist')->search(function ($cartItem, $rowId) use ($id){
-        //     return $rowId === $id;
-        // });
-
-        // if($duplicates->isNotEmpty()){
-
-        //     session()->flash('message', 'Item is already in your wishlist!');
-
-        //     return redirect()->back();
-        // }
 
 
              $categories = Category::all();
@@ -124,7 +106,7 @@ class CartController extends Controller
 
         session()->flash('message', 'Item was added to your wishlist Successfully');
 
-        return redirect()->back();
+        return redirect()->route('cart.index');
     }
 
     /**

@@ -12,20 +12,9 @@
     <meta name="keywords" content="HTML5 Template">
     <meta name="description" content="Molla - Bootstrap eCommerce Template">
     <meta name="author" content="p-themes">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/icons/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/images/icons/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/icons/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('assets/images/icons/site.html') }}">
-    <link rel="mask-icon" href="{{ asset('assets/images/icons/safari-pinned-tab.svg') }}" color="#666666">
-    <link rel="shortcut icon" href="{{ asset('assets/images/icons/favicon.ico') }}">
-    <meta name="apple-mobile-web-app-title" content="Molla">
-    <meta name="application-name" content="Molla">
-    <meta name="msapplication-TileColor" content="#cc9966">
-    <meta name="msapplication-config" content="{{ asset('assets/images/icons/browserconfig.xml') }}')}}">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet"
-        href="{{ asset('assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css') }}">
+ {{--   <link rel="stylesheet"
+         href="{{ asset('assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css') }}"> --}}
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/owl-carousel/owl.carousel.css') }}">
@@ -34,7 +23,7 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/skins/skin-demo-14.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/demos/demo-14.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/demos/demo-14.css') }}"> --}}
     @yield('css')
 </head>
 
@@ -44,11 +33,7 @@
             <div class="header-top">
                 <div class="container">
 
-                    @if (session()->has('orderComplete'))
-    <div class="alert alert-success">
-        {{ session('orderComplete')    }}
-    </div>
-@endif
+
 @if (session()->has('error'))
     <div class="alert alert-danger">
         {{ session('error')    }}
@@ -77,8 +62,7 @@
                                 <i class="icon-bars"></i>
                             </button>
                             <a href="/" class="logo">
-                                <img src="{{asset('assets/images/demos/demo-14/logo.png')}}" alt="Molla Logo" width="105"
-                                    height="25">
+                                <h1>Food App</h1>
                             </a>
                         </div><!-- End .col-xl-3 col-xxl-2 -->
 
@@ -94,7 +78,7 @@
 
                                                 <label for="search" class="sr-only">Search</label>
                                                 <input type="search" value="{{request()->query('search')}}" class="form-control" name="search" id="q"
-                                                    placeholder="Search product ..." required>
+                                                    placeholder="Search our Menu ..." required>
 
                                                 <button class="btn btn-primary" type="submit"><i
                                                         class="icon-search"></i></button>
@@ -106,20 +90,10 @@
                                 <div class="col-lg-4 col-xxl-5col d-flex justify-content-end align-items-center">
                                     <div class="header-dropdown-link">
 
-                                        {{-- <a href="wishlist.html" class="wishlist-link">
-                                            <i class="icon-heart-o"></i>
 
-                                            <span class="wishlist-count">
-                                            @if (!Auth::user())0 @else 1
-                                                @endif
-                                            </span>
-                                            <span class="wishlist-txt">Wishlist</span>
-                                        </a> --}}
 
-                                        <div class="dropdown cart-dropdown">
-                                            <a href="{{ route('cart.index') }}" class="dropdown-toggle" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                                data-display="static">
+                                     <a href="{{route('cart.index')}}">   <div class="dropdown cart-dropdown">
+                                            <a href="{{ route('cart.index') }}" class="dropdown-toggle" >
                                                 <i class="icon-shopping-cart"></i>
                                                 <span class="cart-count">
                                                     {{ \Gloudemans\Shoppingcart\Facades\Cart::count() }}
@@ -128,34 +102,16 @@
                                                 <span class="cart-txt">Cart</span>
                                             </a>
 
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <div class="dropdown-cart-products">
-
-
-
-                                                    <div class="dropdown-cart-total">
-                                                        <span>Total</span>
-
-                                                        <span
-                                                            class="cart-total-price">{{ \Gloudemans\Shoppingcart\Facades\Cart::subTotal() }}</span>
-                                                    </div><!-- End .dropdown-cart-total -->
-
-                                                    <div class="dropdown-cart-action">
-                                                        <a href="{{ route('cart.index') }}"
-                                                            class="btn btn-primary">View Cart</a>
-                                                        <a href="{{ route('checkout') }}"
-                                                            class="btn btn-outline-primary-2"><span>Checkout</span><i
-                                                                class="icon-long-arrow-right"></i></a>
-                                                    </div><!-- End .dropdown-cart-total -->
-                                                </div><!-- End .dropdown-menu -->
-                                            </div><!-- End .cart-dropdown -->
                                         </div>
-                                    </div><!-- End .col-xxl-5col -->
+                                    </div>
+
+                                </a><!-- End .col-xxl-5col -->
                                 </div><!-- End .row -->
                             </div><!-- End .col-xl-9 col-xxl-10 -->
                         </div><!-- End .row -->
                     </div><!-- End .container-fluid -->
                 </div><!-- End .header-middle -->
+ {{-- <p class="text-success">Help</p> --}}
 
                 <div class="header-bottom sticky-header">
                     <div class="container-fluid">
@@ -190,29 +146,23 @@
                             <div class="col col-lg-6 col-xl-6 col-xxl-8 header-center">
                                 <nav class="main-nav">
                                     <ul class="menu sf-arrows">
-
                                         <li>
-                                            <a href="#" class="sf-with-ul">Shop</a>
-
+                                            <a href="{{ route('menus.list') }}" class="sf-with-ul">Menu List</a>
+                                        </li>
+                                        <li>
+                                            <a href="" class="sf-with-ul">Menu Categories</a>
                                             <ul>
                                                 @foreach (\App\Models\Category::all() as $category)
                                                     <li>
                                                         <a href="{{ route('category', $category) }}"
-                                                            class="sf-with-ul">{{ $category->name }}</a>
-
-
-                                                    </li>
+                                                            class="sf-with-ul">{{ $category->name }}</a>    </li>
                                                 @endforeach
                                             </ul>
-
-
                                         </li>
-
-                                        <li>
+                                        {{-- <li>
                                             <a href="{{ route('dashboard') }}" class="sf-with-ul">Dashboard</a>
+                                        </li> --}}
 
-
-                                        </li>
                                     </ul><!-- End .menu -->
                                 </nav><!-- End .main-nav -->
                             </div><!-- End .col-xl-9 col-xxl-10 -->
@@ -386,7 +336,7 @@
 
     <!-- Plugins JS File -->
     @yield('scripts')
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('asset/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.hoverIntent.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>

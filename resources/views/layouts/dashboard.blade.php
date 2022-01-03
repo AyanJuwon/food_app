@@ -14,22 +14,21 @@
     <meta name="author" content="Olamiposi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <title>Food App - @yield('title')</title>
-    <!-- Fevicon -->
-    <link rel="shortcut icon" href="{{asset('asset/images/logo.svg')}}" type="image/x-icon">
     <!-- Start css -->
     <!-- Switchery css -->
-    <link href="{{asset('asset/plugins/switchery/switchery.min.css')}}" rel="stylesheet">
+    <link href="{{asset('admin_assets/plugins/switchery/switchery.min.css')}}" rel="stylesheet">
+
 @yield('css')
 
 <!-- Apex css -->
     <link href="{{asset('asset/plugins/apexcharts/apexcharts.css')}}" rel="stylesheet">
     <!-- Slick css -->
-    <link href="{{asset('asset/plugins/slick/slick.css')}}" rel="stylesheet">
-    <link href="{{asset('asset/plugins/slick/slick-theme.css')}}" rel="stylesheet">
-    <link href="{{asset('asset/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('asset/css/icons.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('asset/css/flag-icon.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('asset/css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/plugins/slick/slick.css')}}" rel="stylesheet">
+    <link href="{{asset('admin_assets/plugins/slick/slick-theme.css')}}" rel="stylesheet">
+    <link href="{{asset('admin_assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/css/icons.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/css/flag-icon.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('admin_assets/css/style.css')}}" rel="stylesheet" type="text/css">
 
     <style>
         /*html,body{*/
@@ -88,9 +87,7 @@
         <!-- Start Sidebar -->
         <div class="sidebar">
             <!-- Start Logobar -->
-            <div class="logobar">
-                <a href="index.html" class="logo logo-large"><img src="{{asset('asset/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
-                <a href="index.html" class="logo logo-small"><img src="{{asset('asset/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
+            <div class="logobar"><h1>Food App</h1>
             </div>
             <!-- End Logobar -->
             <!-- Start Navigationbar -->
@@ -187,13 +184,13 @@
             </div>
         </div>
         <!-- Start Topbar -->
-        <div class="topbar">
+        <div class="topbar mb-3">
             <!-- Start row -->
             <div class="row align-items-center">
                 <!-- Start col -->
-                <div class="col-md-12 align-self-center">
+                <div class="col-md-12 align-self-center d-flex justify-content-between">
                     <div class="togglebar">
-                        <ul class="list-inline mb-0">
+                        <ul class="list-inline">
                             <li class="list-inline-item">
                                 <div class="menubar">
                                     <a class="menu-hamburger" href="javascript:void();">
@@ -225,17 +222,6 @@
 
 
                             </li>
-                            @foreach(\App\Models\Orders::where('tracking',0)->where('table_id',1)->orderBy('id','desc')->take(2)->get() as $latestOrders)
-
-                            <li class="list-inline-item">
-
-                            <div class="alert alert-warning">
-                                <h5>Order created at Table {{$latestOrders->table_id}} </h5>
-                                   </div>
-
-
-                                </li>
-                                   @endforEach
 
                             <li class="list-inline-item">
 
@@ -247,19 +233,13 @@
                                                {{ session('message')    }}
                                            </div>
                                        @endif
-
-                                <div>
-
-
-
-                                </div>
-                            <li>
+                                        </li>
 
                         </ul>
                     </div>
                     <div class="infobar">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item mt-3">
+                        <ul class="list-inline ">
+                            <li class="list-inline-item ">
                                 <div class="profilebar">
                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('asset/images/users/profile.svg')}}" class="img-fluid" alt="profile"><span class="feather icon-chevron-down live-icon"></span></a>
@@ -284,6 +264,33 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="list-inline-item">
+                                <div class="notifybar">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle infobar-icon" href="#" role="button" id="notoficationlink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="admin_assets/images/svg-icon/notifications.svg" class="img-fluid" alt="notifications">
+                                            @foreach(\App\Models\Orders::where('tracking',0)->where('table_id',1)->orderBy('id','desc')->take(2)->get() as $latestOrders)
+                                        @if($latestOrders)    <span class="live-icon"></span> @endif @endforeach</a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notoficationlink">
+                                            <div class="notification-dropdown-title">
+                                                <h4>Notifications</h4>
+                                            </div>
+                                            <ul class="list-unstyled">
+                                                @foreach(\App\Models\Orders::where('tracking',0)->where('table_id',1)->orderBy('id','desc')->take(2)->get() as $latestOrders)
+
+                                              <a href="{{ route('adminViewOrder', $order) }}" >  <li class="media dropdown-item">
+                                                    <span class="action-icon badge badge-primary-inverse"><i class="feather fas fa-receiptr"></i></span>
+                                                    <div class="media-body">
+                                                        <h5 class="action-title">Order at table {{$latestOrders->table_id}}</h5>
+                                                        <p><span class="timing">{{$latestOrders->created_at->toDateString()}}</span></p>
+                                                    </div>
+                                                </li> </a>
+                                                @endforeach
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -299,17 +306,13 @@
             {{ session('message')    }}
         </div>
     @endif
-        @yield('content')
-    </div>
+
+   @yield('content')
     <!-- End Rightbar -->
+
 </div>
 
 
-            @if (session()->has('message'))
-       <div class="alert alert-success">
-           {{ session('message')    }}
-       </div>
-   @endif
 <!-- Start Footerbar -->
 <div class="footerbar">
     <footer class="footer">
@@ -319,28 +322,44 @@
 <!-- End Footerbar -->
 <!-- End Containerbar -->
 <!-- Start js -->
+<script>
 
-<script src="{{asset('asset/js/jquery.min.js')}}"></script>
-<script src="{{asset('asset/js/popper.min.js')}}"></script>
-<script src="{{asset('asset/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('asset/js/modernizr.min.js')}}"></script>
-<script src="{{asset('asset/js/detect.js')}}"></script>
-<script src="{{asset('asset/js/jquery.slimscroll.js')}}"></script>
-<script src="{{asset('asset/js/vertical-menu.js')}}"></script>
-<!-- Switchery js -->
-<script src="{{asset('asset/plugins/switchery/switchery.min.js')}}"></script>
-@yield('script')
 
-<!-- Apex js -->
-<script src="{{asset('asset/plugins/apexcharts/apexcharts.min.js')}}"></script>
-<script src="{{asset('asset/plugins/apexcharts/irregular-data-series.js')}}"></script>
-<!-- Slick js -->
-<script src="{{asset('asset/plugins/slick/slick.min.js')}}"></script>
-<!-- Custom Dashboard js -->
-<script src="{{asset('asset/js/custom/custom-dashboard.js')}}"></script>
-<!-- Core js -->
-<script src="{{asset('asset/js/core.js')}}"></script>
-<!-- End js -->
+    setTimeout(function(){
+        window.location.reload()
+    }, 120000);
+        </script>
+
+    <!-- Start js -->
+    <script src="{{asset('admin_assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('admin_assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('admin_assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin_assets/js/modernizr.min.js')}}"></script>
+    <script src="{{asset('admin_assets/js/detect.js')}}"></script>
+    <script src="{{asset('admin_assets/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('admin_assets/js/vertical-menu.js')}}"></script>
+    <!-- Switchery js -->
+    <script src="{{asset('admin_assets/plugins/switchery/switchery.min.js')}}"></script>
+    <!-- Required Datatable js -->
+    <script src="{{asset('admin_assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <!-- Datatable js -->
+    <script src="{{asset('admin_assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/jszip.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/pdfmake.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/vfs_fonts.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/buttons.print.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('admin_assets/plugins/datatables/responsive.bootstrap4.min.js')}}"></script>
+    <!-- Core js -->
+    <script src="{{asset('admin_assets/js/core.js')}}"></script>
+    <!-- End js -->
+
 </body>
 
 </html>

@@ -52,11 +52,7 @@ class MenuController extends Controller
 
         if($request->hasFile('menu_image')){
             $file = $request->file('menu_image');
-            $resize = Image::make($file)->encode('jpg');
-            $hash = md5($resize->__toString());
-            $path = "uploads/menu/{$hash}.jpg";
-            $resize->save($path);
-            $image = "{$hash}.jpg";
+            $image = "{$file}.jpg";
         }
         $category = Category::where('id',$request->category)->first();
         Menu::create([
@@ -116,11 +112,8 @@ class MenuController extends Controller
 
         if($request->hasFile('menu_image')){
             $file = $request->file('menu_image');
-            $resize = Image::make($file)->encode('jpg');
-            $hash = md5($resize->__toString());
-            $path = "uploads/menu/{$hash}.jpg";
-            $resize->save($path);
-            $image = "{$hash}.jpg";
+            $path = "uploads/menu/{$file}.jpg";
+            $image = "{$file}.jpg";
 
             $data['menu_image'] = $image;
         }
@@ -140,7 +133,6 @@ class MenuController extends Controller
      */
     public function destroy($menu)
     {
-//        dd($menus);
         $menu = Menu::where('id', $menu)->firstOrFail();
 
         $menu->delete();

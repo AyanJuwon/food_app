@@ -3,63 +3,108 @@
 
 @section('css')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/animate/animate.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/select2/select2.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/main.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}"> --}}
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+<!--===============================================================================================-->
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/util.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/main.css') }}"> --}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="{{ asset('asset/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('asset/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- Responsive Datatable css -->
+<link href="{{ asset('asset/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('asset/styles/store.css') }}">
+<link rel="stylesheet" href="{{ asset('asset/styles/orders.css') }}">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 @endsection
 @section('content')
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100">
-                <table>
-                    <thead>
-                        <tr class="table100-head">
-                            <th class="column1">Date</th>
-                            <th class="column2">Order ID</th>
-                            <th class="column5">Order Quantity</th>
-                            <th class="column6">Total</th>
-                            <th class="column7">Reference</th>
-                            <th class="column8">Status</th>
-                            <th class="column9">See Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+ <div class="mt-5 pb-5"></div>
+    <div class="contentbar mt-5 pt-5">
+        <!-- Start row -->
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="card-title mb-0">Completed Orders</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Reference</th>
+                                        <th>Payment Method</th>
+                                        <th>Table ID</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>See Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
 
-                        @foreach ($orders as $order)
+                        @foreach ($orders as $order)  <tr>
+                                        <td scope="row">#{{$order->table_id}}</td>
+                                        <td>{{$order->reference}}</td>
 
-                            <?php $cart_quantity = 0; ?>
-                            <tr>
-                                <td class="column1">{{ $order->updated_at }}</td>
-                                <td class="column2">{{ $order->id }}</td>
-                                <td class="column5">
-                                    @foreach (\App\Models\OrderDetail::where('order_id', $order->id)->get() as $orderDetail)
-                                        <?php $cart_quantity += $orderDetail->quantity; ?>
+                                        <td>@if($order->payment_method == 0) Paystacks @else Cash @endif</td>
+                                        <td>{{$order->table_id}}</td>
+                                        <td>{{$order->created_at->toDateString()}}</td>
+                                        <td>${{$order->total}}</td>
+                                        <td>           @if ($order->tracking == 0)
+                                            <span class="badge badge-info-inverse">Cooking</span>
+
+                                        @endif
+                                        @if ($order->tracking == 1)
+
+                                            <span class="badge badge-success-inverse">Completed</span>
+                                        @else
+                                            @if ($order->tracking == 2)
+
+                                                <span class="badge badge-danger-inverse">Cancelled</span>
+                                            @endif
+
+                                        @endif</td>
+                                        <td>    <a href="{{ route('adminViewOrder', $order) }}" class="text-primary">See
+                                            Details</a></td>
+
+                                    </tr>
                                     @endforeach
-                                    <?php echo $cart_quantity; ?>
-                                </td>
 
-                                <td class="column6">${{ $order->total }}</td>
-                                <td class="column7">{{ $order->payment_id }}</td>
-                                <td class="column8"><button type="submit" class="btn btn-success">Completed</button></td>
-                                <td class="column9"><a href="{{ route('adminViewOrder', $order) }}"  class="text-primary">See Details</a></td>
-                            </tr>
-                            </form>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- End col -->
         </div>
+        <!-- End row -->
     </div>
 @endsection
 

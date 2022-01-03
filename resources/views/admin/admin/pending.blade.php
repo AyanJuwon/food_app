@@ -2,32 +2,39 @@
 
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}"> --}}
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+<!--===============================================================================================-->
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/util.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/main.css') }}"> --}}
+<script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/animate/animate.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/select2/select2.min.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('asset/styles/main.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
+<link href="{{ asset('asset/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('asset/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<!-- Responsive Datatable css -->
+<link href="{{ asset('asset/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+    type="text/css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-    <!-- Responsive Datatable css -->
-    <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" />
-        <style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('asset/styles/store.css') }}">
+<link rel="stylesheet" href="{{ asset('asset/styles/orders.css') }}">
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <style>
 .dropdown {
   float: left;
   overflow: hidden;
@@ -45,7 +52,7 @@
 }
 
  .dropdown:hover .dropbtn, .dropbtn:focus {
- 
+
 }
 
 .dropdown-content {
@@ -73,89 +80,129 @@
 .show {
   display: block;
 }
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.flex-container > div {
+  text-align: center;
+}
 </style>
 
 @endsection
 @section('content')
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100">
-                <table>
-                    <thead>
-                        <tr class="table100-head">
-                            <th class="column1">Date</th>
-                            <th class="column2">Order ID</th>
-                            <th class="column5">Order Quantity</th>
-                            <th class="column6">Total</th>
-                            <th class="column7">Reference</th>
-                            <th class="column8">Status</th>
-                            <th class="column9">See Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<div class="mt-5 pb-5"></div>
+    <div class="contentbar mt-5 pt-5">
+        <!-- Start row -->
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="card-title mb-0">Pending Orders</h5>
+                            </div>
 
-                        @foreach ($orders as $order)
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Reference</th>
+                                        <th>Payment Method</th>
+                                        <th>Table ID</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                        <th>See Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            <?php $cart_quantity = 0; ?>
-                            <tr>
-                                <td class="column1">{{ $order->created_at->toDateString() }}</td>
-                                <td class="column2">{{ $order->id }}</td>
 
+                        @foreach ($orders as $order)  <tr>
+                                        <td scope="row">#{{$order->id}}</td>
+                                        <td>{{$order->reference}}</td>
+                                        <td>@if($order->payment_method == 0) Paystacks @else Cash @endif</td>
+                                        <td>{{$order->table_id}}</td>
+                                        <td>{{$order->created_at->toDateString()}}</td>
+                                        <td>${{$order->total}}</td>
+                                        <td>
+                                                 @if ($order->tracking == 0)
+                                            <span class="badge badge-info-inverse">Queued</span>
 
-                                <td class="column5">
-                                    @foreach (\App\Models\OrderDetail::where('order_id', $order->id)->get() as $orderDetail)
-                                        <?php $cart_quantity += $orderDetail->quantity; ?>
+                                        @endif
+                                        @if ($order->tracking == 1)
+
+                                            <span class="badge badge-primary-inverse">Processing</span>
+                                        @else
+                                            @if ($order->tracking == 2)
+
+                                                <span class="badge badge-success-inverse">Ready</span>
+                                            @endif
+                                            @if ($order->tracking == 3)
+
+                                                <span class="badge badge-danger-inverse">Cancelled</span>
+                                            @endif
+
+                                        @endif
+                                    </td>
+                                        <td>
+                                            <div class="button-list flex-container">
+                                        <div>            <form  id="processOrder"
+                                                action="{{ route('admin.processOrder', [$order->id]) }}" method="post">
+                                                @csrf<button type="submit" class="btn btn-primary-rgba"><i class="feather icon-file"></i></button></form>
+                                        </div>
+                                            <div>    <form  id="completeForm"
+                                                action="{{ route('admin.completeOrder', [$order->id]) }}" method="post">
+                                                @csrf<button type="submit" class="btn btn-success-rgba"><i class="fas fa-check"></i></button></form>
+                                                </div>
+                                        <div>    <form  id="cancelForm" action="{{ route('admin.cancelOrder', [$order->id]) }}"
+                                                method="post">
+                                                @csrf<button type="submit" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></button></form>
+                                        </div>
+{{--
+                                                <a href="{{ route('admin.processOrder', [$order->id]) }}" onclick="event.preventDefault();document.getElementById('processOrder').submit();" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                                <a href="{{ route('admin.completeOrder', [$order->id]) }}" onclick="event.preventDefault();document.getElementById('completeForm').submit();" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                                <a href="{{ route('admin.cancelOrder', [$order->id]) }}" onclick="event.preventDefault();document.getElementById('cancelForm').submit();" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a> --}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('adminViewOrder', $order) }}" class="text-primary">See
+                                                Details</a>
+                                        </td>
+                                    </tr>
                                     @endforeach
-                                    <?php echo $cart_quantity; ?>
-                                </td>
 
-                                <td class="column6">${{ $order->total }}</td>
-                                <td class="column7">{{ $order->reference}}</td>
-                                <td class="column8 ">
-                                    <form hidden id="completeForm"
-                                        action="{{ route('admin.completeOrder', [$order->id]) }}" method="post">
-                                        @csrf<button type="submit" class="btn btn-success">Complete Order</button></form>
-                                    <form hidden id="cancelForm" action="{{ route('admin.cancelOrder', [$order->id]) }}"
-                                        method="post">
-                                        @csrf<button type="submit" class="btn btn-danger">Cancel Order</button></form>
-
-                                        <div class="dropdown">
-                                            <button class="dropbtn" onclick="myFunction()">Action
-                                              <i class="fa fa-caret-down"></i>
-                                            </button>
-                                            <div class="dropdown-content" id="myDropdown">
-                                               <a href="" class="text-success" onclick="event.preventDefault();document.getElementById('completeForm').submit();">Complete Order</a>
-
-        <a href="" onclick="event.preventDefault();document.getElementById('cancelForm').submit();" class="text-danger">Cancel Order</a>
-                                            </div>
-                                            </div>
-
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </td>
-            <td class="column9"><a href="{{ route('adminViewOrder', $order) }}" class="text-primary">See Details</a></td>
-            </tr>
-            @endforeach
-            </tbody>
-            </table>
+            <!-- End col -->
         </div>
-    </div>
+        <!-- End row -->
     </div>
 @endsection
 
 @section('script')
 
-    <script src="{{ asset('asset/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('asset/vendor/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('asset/vendor/select2/select2.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('asset/script/main.js') }}"></script>
-
+<script src="{{ asset('asset/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('asset/vendor/bootstrap/js/popper.js') }}"></script>
+<script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('asset/vendor/select2/select2.min.js') }}"></script>
+<!--===============================================================================================-->
+<script src="{{ asset('asset/script/main.js') }}"></script>
 <script>
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */

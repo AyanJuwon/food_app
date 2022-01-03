@@ -88,7 +88,7 @@ class AdminController extends Controller
 
     public function adminViewPendingOrders(Orders $order){
         //    $orders = Orders::where('user_id',auth()->user()->id)->get();
-           $orders = Orders::where('tracking',0)->get();
+           $orders = Orders::where('tracking',0)->orWhere('tracking',1)->get();
 
 //        $total_quantity= 0;
 //    foreach($OrderDetail as $qty) {
@@ -127,12 +127,19 @@ class AdminController extends Controller
         return view('admin.admin.cancelled')->with('orders',$orders);
     }
 
+ public function processOrders($id){
+        Orders::where('id',$id)->update(['tracking'=>1]);
+        session()->flash('message', 'Order with id '. $id.' is being Processed');
+        session()->flash('success', 'Order with id '.$id.' is being Processed');
+
+        // return response()->json(['success' => true]);
+        return redirect()->back();
+    }
+
 
     public function completeOrders($id){
 
-        Orders::where('id',$id)->update(['tracking'=>1]);
-        // Orders::update('tracking',1 );
-        // create notification db, add useer id and message. then notify user
+        Orders::where('id',$id)->update(['tracking'=>2]);
         session()->flash('message', 'Order with id '. $id.' completed successfully');
         session()->flash('success', 'Order with id '.$id.' completed successfully');
 
@@ -142,9 +149,10 @@ class AdminController extends Controller
 
 
 
+
     public function cancelOrders( Request $request, $id){
 
-        Orders::where('id',$id)->update(['tracking'=>2]);
+        Orders::where('id',$id)->update(['tracking'=>3]);
         // Orders::update('tracking',2 );
 
         session()->flash('message', 'Order with id '. $id.' cancelled successfully');

@@ -18,27 +18,23 @@ class CheckoutController extends Controller
     {
         $address = $request->input('address');
         $request->validate([
-            'name' => 'required',
+            'payer_name' => 'required',
             'table_id' => 'required',
             'email' => 'required',
-            'phoneNumber' => 'required',
+            'payment_method'=>'required',
 
         ]);
         $total = str_replace(',', '', Cart::SubTotal());
         $order = Orders::create([
             'table_id' => $request->table_id,
-            'name' => $request->name,
+            'payer_name' => $request->payer_name,
             'tracking' => 0,
             'reference' => $request->reference,
             'total' => $total,
-        ]);
-        $customer = Customer::create([
-            'name' => $request->name,
             'email' => $request->email,
-            'phoneNumber' => $request->phoneNumber,
-
-
+            'payment_method'=>$request->payment_method,
         ]);
+
         foreach (Cart::content() as $item) {
             OrderDetail::create([
                 'order_id' => $order->id,

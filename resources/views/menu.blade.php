@@ -77,7 +77,7 @@
                                                 <div class="details-filter-row details-row-size">
                                                     <label for="qty">Qty:</label>
                                                     <div class="product-details-quantity">
-                                                        <input type="number" name ='qty' id="qty" class="form-control" min="1" max="10"
+                                                        <input type="number" value =1  name ='qty' id="qty" class="form-control" min="1" max="10"
                                                             step="1" data-decimals="0" required>
                                                     </div><!-- End .product-details-quantity -->
                                                 </div><!-- End .details-filter-row -->

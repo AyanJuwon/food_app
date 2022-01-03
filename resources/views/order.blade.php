@@ -54,22 +54,27 @@
                                         <p>Quantity: {{ $orderDetail->quantity }} </p>
                                         <div>
                                             @if ($order->tracking == 0)
-                                                <span class="out-of-stock text-warning">Cooking</span>
+                                                <span class="out-of-stock text-warning">Queued</span>
 
                                             @endif
                                             @if ($order->tracking == 1)
 
-                                                <span class="in-stock text-success">Ready</span>
+                                                <span class="in-stock text-info">Cooking</span>
                                                 <?php session()->flash('message', 'your order with id ' .
-                                                $order->id . ' is ready'); ?>
-                                            @else
+                                                $order->id . ' is cooking'); ?>
+                                            @endif
                                                 @if ($order->tracking == 2)
+                                                    <?php session()->flash('success', 'your order with id ' .
+                                                    $order->id . 'and ' . $order->reference . ' is ready, you will be served  shortly'); ?>
+                                                    <span class="out-of-stock text-success">Completed</span>
+                                            @endif
+                                                @if ($order->tracking == 3)
                                                     <?php session()->flash('error', 'your order with id ' .
                                                     $order->id . 'and ' . $order->reference . ' has been cancelled, you will be refunded shortly'); ?>
                                                     <span class="out-of-stock text-danger">Cancelled</span>
                                                 @endif
 
-                                            @endif
+
                                         </div>
                                         <p class="story-card__date">Ordered on:
                                             {{ $order->created_at->toDateString() }}
@@ -99,7 +104,8 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Payment Details</h5>
-                                    <p class="card-text text-secondary  ">Paid with Paystacks</p>
+                                    <p class="card-text text-secondary  ">@if ($order->payment_method == 0) Paid with Paystacks
+                                    @else Pay with Cash to the nearest waitress to start your Order @endif</p>
                                     <p class="card-text text-secondary">Items Total: ${{ $order->total }} </p>
 
                                 </div>
@@ -122,7 +128,8 @@
 
         // The code that checks if the window needs to reload
         function refreshCheck() {
-            window.location.reload(); // If this is called no reset is needed
+            // window.location.reload(); // If this is called no reset is needed
+            console.log('reloaded')
             reset(); // We want to reset just to make sure the location reload is not called.
 
 

@@ -18,9 +18,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        $trending = Menu::all();
+        $menus = Menu::paginate(16);
         $categories = Category::all();
-        return view('shop')->with('trending', $trending)->with('categories', $categories);
+        return view('shop')->with('menus', $menus)->with('categories', $categories);
     }
 
     /**
@@ -130,7 +130,7 @@ class UserController extends Controller
     {
         session()->put('backUrl', '/orders');
         $orders = Orders::where('table_id', 1)->orderBy('id','desc')->get()->take(5);
-        dd($orders);
+       
         $categories = Category::all();
         return view('orders')
             ->with('orders', $orders)->with('categories', $categories);

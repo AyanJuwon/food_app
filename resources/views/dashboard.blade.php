@@ -76,6 +76,7 @@
 
 
 setTimeout(function(){
-    window.location.reload()
+    // window.location.reload()
+    console.log('reloaded')
 }, 120000);
     </script>
