@@ -76,12 +76,12 @@
                                             <?php $total = str_replace(',', '', Cart::SubTotal()); ?>
                                             <tr class="summary-subtotal">
                                                 <td>Subtotal:</td>
-                                                <td>${{ $total }}</td>
+                                                <td>&#x20A6;{{ $total }}</td>
                                             </tr><!-- End .summary-subtotal -->
 
                                             <tr class="summary-total">
                                                 <td>Total:</td>
-                                                <td>$ {{ $total }}</td>
+                                                <td>&#x20A6; {{ $total }}</td>
                                             </tr><!-- End .summary-total -->
                                         </tbody>
                                     </table><!-- End .table table-summary -->
@@ -112,7 +112,7 @@
                                             class="btn btn-outline-primary-2 btn-order btn-block">
                                             <span class="btn-text">Place Order</span>
                                             <span class="btn-hover-text"> Pay
-                                                $
+                                                &#x20A6;
                                                 {{ $total }}
                                             </span>
                                         </button> </a>

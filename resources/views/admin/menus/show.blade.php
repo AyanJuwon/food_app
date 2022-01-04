@@ -55,7 +55,7 @@
                                         <div class="invoice-name">
                                             <h5 class="text-uppercase mb-3">Details</h5>
                                             <p class="mb-1">No : {{$menu->id}}</p>
-                                            <h4 class="text-success mb-0 mt-3">${{number_format($menu->menu_price)}}</h4>
+                                            <h4 class="text-success mb-0 mt-3">&#x20A6;{{number_format($menu->menu_price)}}</h4>
                                         </div>
                                     </div>
                                 </div>

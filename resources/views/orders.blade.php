@@ -32,7 +32,7 @@
                                     </h3><!-- End .product-title -->
                                 </div><!-- End .product -->
                             </td>
-                            <td class="price-col">${{ $menu->menu_price }}</td>
+                            <td class="price-col">&#x20A6;{{ $menu->menu_price }}</td>
                             <td class="stock-col">
                                 @if ($order->tracking == 0)
                                     <span class="out-of-stock">In Transit</span>

@@ -159,9 +159,14 @@
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        {{-- <li>
-                                            <a href="{{ route('dashboard') }}" class="sf-with-ul">Dashboard</a>
-                                        </li> --}}
+                                        @if (\App\Models\Orders::where('tracking', 0)->orWhere('tracking', 1)->count() > 0)
+
+
+                                        <li>@foreach (\App\Models\Orders::where('tracking', 0)->orWhere('tracking', 1)->orderBy('created_at','desc')->get()->take(1) as $pendingOrder )
+<a href="{{ route('myOrder',$pendingOrder->id) }}" class="sf-with-ul">View pending order</a>
+                                        @endforeach
+
+                                        </li>@endif
 
                                     </ul><!-- End .menu -->
                                 </nav><!-- End .main-nav -->

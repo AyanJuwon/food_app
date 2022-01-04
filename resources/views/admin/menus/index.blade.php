@@ -68,7 +68,7 @@
                                     @foreach ($menus as $menu)
                                         <tr>
                                             <td>{{ $menu->menu_name }}</td>
-                                            <td>{{ number_format($menu->menu_price) }}</td>
+                                            <td>&#x20A6;{{ number_format($menu->menu_price) }}</td>
                                             <td>{{ $menu->category->name }}</td>
                                             <td>{{ $menu->created_at->toDateString() }}</td>
                                             <td>

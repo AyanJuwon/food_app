@@ -113,7 +113,7 @@ class AdminController extends Controller
     public function adminViewCompletedOrders()
     {
         //    $orders = Orders::where('user_id',auth()->user()->id)->get();
-        $orders = Orders::where('tracking', 1)->get();
+        $orders = Orders::where('tracking', 2)->get();
 
         return view('admin.admin.completed')->with('orders', $orders);
         //
@@ -122,7 +122,7 @@ class AdminController extends Controller
 
     public function adminViewCancelledOrders()
     {
-        $orders = Orders::where('tracking', 2)->get();
+        $orders = Orders::where('tracking', 3)->get();
 
         return view('admin.admin.cancelled')->with('orders', $orders);
     }

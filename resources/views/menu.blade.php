@@ -62,7 +62,7 @@
 
 
                                             <div class="product-price">
-                                             Price:   ${{ $menu->menu_price }}
+                                             Price: &#x20A6;{{ $menu->menu_price }}
                                             </div><!-- End .product-price -->
 
                                             <div class="product-content">

@@ -76,7 +76,7 @@
                                      <td>@if($order->payment_method == 0) Paystacks @else Cash @endif</td>
                                      <td>{{$order->table_id}}</td>
                                      <td>{{$order->created_at->toDateString()}}</td>
-                                     <td>${{$order->total}}</td>
+                                     <td>&#x20A6;{{$order->total}}</td>
                                      <td>           @if ($order->tracking == 0)
                                          <span class="badge badge-info-inverse">Cooking</span>
 
@@ -85,7 +85,7 @@
 
                                          <span class="badge badge-success-inverse">Completed</span>
                                      @else
-                                         @if ($order->tracking == 2)
+                                         @if ($order->tracking == 3)
 
                                              <span class="badge badge-danger-inverse">Cancelled</span>
                                          @endif

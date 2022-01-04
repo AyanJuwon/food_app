@@ -68,23 +68,30 @@
                                 <div class="col-5 text-right">
                                     @if ($order->tracking == 0)
                                     <span class="badge badge-info-inverse">Cooking</span>
-                                    <div class="button-list">
-                                        <form hidden id="completeForm"
-                                        action="{{ route('admin.completeOrder', [$order->id]) }}" method="post">
-                                        @csrf<button type="submit" class="btn btn-success">Complete Order</button></form>
-                                    <form hidden id="cancelForm" action="{{ route('admin.cancelOrder', [$order->id]) }}"
-                                        method="post">
-                                        @csrf<button type="submit" class="btn btn-danger">Cancel Order</button></form>
-
-                                        <a href="#" onclick="event.preventDefault();document.getElementById('completeForm').submit();" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
-                                        <a href="#" onclick="event.preventDefault();document.getElementById('cancelForm').submit();" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a>
-                                    </div>
+                                    <div class="button-list flex-container">
+                                        <div>            <form  id="processOrder"
+                                                action="{{ route('admin.processOrder', [$order->id]) }}" method="post">
+                                                @csrf<button type="submit" class="btn btn-primary-rgba"><i class="feather icon-file"></i></button></form>
+                                        </div>
+                                            <div>    <form  id="completeForm"
+                                                action="{{ route('admin.completeOrder', [$order->id]) }}" method="post">
+                                                @csrf<button type="submit" class="btn btn-success-rgba"><i class="fas fa-check"></i></button></form>
+                                                </div>
+                                        <div>    <form  id="cancelForm" action="{{ route('admin.cancelOrder', [$order->id]) }}"
+                                                method="post">
+                                                @csrf<button type="submit" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></button></form>
+                                        </div>
+{{--
+                                                <a href="{{ route('admin.processOrder', [$order->id]) }}" onclick="event.preventDefault();document.getElementById('processOrder').submit();" class="btn btn-primary-rgba"><i class="feather icon-file"></i></a>
+                                                <a href="{{ route('admin.completeOrder', [$order->id]) }}" onclick="event.preventDefault();document.getElementById('completeForm').submit();" class="btn btn-success-rgba"><i class="feather icon-edit-2"></i></a>
+                                                <a href="{{ route('admin.cancelOrder', [$order->id]) }}" onclick="event.preventDefault();document.getElementById('cancelForm').submit();" class="btn btn-danger-rgba"><i class="feather icon-trash"></i></a> --}}
+                                            </div>
                                 @endif
-                                @if ($order->tracking == 1)
+                                @if ($order->tracking == 2)
 
                                     <span class="badge badge-success-inverse">Ready</span>
                                 @else
-                                    @if ($order->tracking == 2)
+                                    @if ($order->tracking == 3)
 
                                         <span class="badge badge-danger-inverse">Cancelled</span>
                                     @endif
@@ -160,8 +167,8 @@
                                            @endif <td><img src="{{ asset($menu->menu_image) }}" class="img-fluid" width="35" alt="{{ $menu->menu_image}}"></td>
                                             <td>{{$menu->menu_name}}</td>
                                             <td> {{ $orderDetail->quantity }}</td>
-                                            <td>${{$menu->menu_price}}</td>
-                                            <td class="text-right">${{$orderDetail->quantity * $menu->menu_price }}</td>
+                                            <td>&#x20A6;{{$menu->menu_price}}</td>
+                                            <td class="text-right">&#x20A6;{{$orderDetail->quantity * $menu->menu_price }}</td>
                                         </tr>
                                         @endforeach
                                         @endforeach
@@ -183,7 +190,7 @@
 
                                                 <tr>
                                                     <td class="text-black f-w-7 font-18">Amount :</td>
-                                                    <td class="text-black f-w-7 font-18">${{ $order->total }}</td>
+                                                    <td class="text-black f-w-7 font-18">&#x20A6;{{ $order->total }}</td>
 
                                                     <td class="text-black f-w-7 font-18"> @if( $order->payment_method == 0) Paid with Paystack
                                 @else

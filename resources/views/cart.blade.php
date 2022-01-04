@@ -68,7 +68,7 @@
                                                             data-decimals="0" required>
                                                     </div><!-- End .cart-product-quantity -->
                                                 </td>
-                                                <td class="total-col">${{ $item->model->menu_price * $item->qty }}</td>
+                                                <td class="total-col">&#x20A6;{{ $item->model->menu_price * $item->qty }}</td>
 
                                                 <td class="remove-col">
 
@@ -101,12 +101,12 @@
                                         <tr class="summary-subtotal">
                                             <td>Subtotal:</td>
                                             <?php $total = str_replace(',', '', Cart::SubTotal()); ?>
-                                            <td>${{ $total }}</td>
+                                            <td>&#x20A6;{{ $total }}</td>
                                         </tr><!-- End .summary-subtotal -->
 
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>$ {{ $total }}</td>
+                                            <td>&#x20A6; {{ $total }}</td>
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->

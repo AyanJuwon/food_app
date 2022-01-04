@@ -80,7 +80,7 @@
                                             {{ $order->created_at->toDateString() }}
                                         </p>
                                         <p class="story-card__date">Price:
-                                            ${{ $menu->menu_price }}
+                                            &#x20A6;{{ $menu->menu_price }}
                                         </p>
                                         <a href="{{ route('menu', $menu->id) }}" class="memorial-card-button">Buy
                                             Again</a>
@@ -106,7 +106,7 @@
                                     <h5 class="card-title">Payment Details</h5>
                                     <p class="card-text text-secondary  ">@if ($order->payment_method == 0) Paid with Paystacks
                                     @else Pay with Cash to the nearest waitress to start your Order @endif</p>
-                                    <p class="card-text text-secondary">Items Total: ${{ $order->total }} </p>
+                                    <p class="card-text text-secondary">Items Total: &#x20A6;{{ $order->total }} </p>
 
                                 </div>
                             </div>

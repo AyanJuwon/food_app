@@ -53,7 +53,7 @@
                                                             href="{{ route('menu', $menu->id) }}">{{ $menu->menu_name }}</a>
                                                     </h3><!-- End .product-title -->
                                                     <div class="product-price">
-                                                        ${{ $menu->menu_price }}
+                                                         &#x20A6;{{ $menu->menu_price }}
                                                     </div><!-- End .product-price -->
                                                     <!-- End .rating-container -->
 

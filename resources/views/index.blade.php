@@ -190,7 +190,7 @@
                                                                                 href="{{ route('menu', $swallow->id) }}">{{ $swallow->menu_name }}</a>
                                                                         </h4>
                                                                         <span
-                                                                            class="mu-menu-price">${{ $swallow->menu_price }}</span>
+                                                                            class="mu-menu-price">&#x20A6;{{ $swallow->menu_price }}</span>
                                                                         <p>{{ $swallow->menu_description }}</p>
                                                                     </div>
                                                                 </div>
@@ -240,7 +240,7 @@
                                                                                 href="{{ route('menu', $combo->id) }}">{{ $combo->menu_name }}</a>
                                                                         </h4>
                                                                         <span
-                                                                            class="mu-menu-price">${{ $combo->menu_price }}</span>
+                                                                            class="mu-menu-price">&#x20A6;{{ $combo->menu_price }}</span>
                                                                         <p>{{ $combo->menu_description }}</p>
                                                                     </div>
                                                                 </div>
@@ -280,7 +280,7 @@
                                                                                 href="{{ route('menu', $sides->id) }}">{{ $sides->memu_name }}</a>
                                                                         </h4>
                                                                         <span
-                                                                            class="mu-menu-price">${{ $sides->menu_price }}</span>
+                                                                            class="mu-menu-price">&#x20A6;{{ $sides->menu_price }}</span>
                                                                         <p>{{ $sides->menu_description }}.</p>
                                                                     </div>
                                                                 </div>
@@ -314,7 +314,7 @@
                                                                 </div>
                                                                 <div class="media-body">
                                                                     <h4 class="media-heading"><a href="{{ route('menu', $breakfast->id) }}">{{$breakfast->menu_name}}t</a></h4>
-                                                                    <span class="mu-menu-price">$15.85</span>
+                                                                    <span class="mu-menu-price">&#x20A6;{{$breakfast->menu_price}}</span>
                                                                     <p>Lorem ipsum dolor sit amet, consectetur
                                                                         adipisicing elit. Facere nulla aliquid
                                                                         praesentium dolorem commodi illo.</p>
@@ -330,104 +330,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="drinks">
-                                    <div class="mu-tab-content-area">
-                                        <div class="row">
 
-                                            <div class="col-md-12">
-                                                <div class="mu-tab-content-left">
-                                                    <ul class="mu-menu-item-nav">
-                                                        <li>
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    <a href="#">
-                                                                        <img class="media-object"
-                                                                            src="{{ asset('assets/img/menu/item-9.jpg ') }}"
-                                                                            alt="img">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="#">English
-                                                                            Breakfast</a></h4>
-                                                                    <span class="mu-menu-price">$15.85</span>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit. Facere nulla aliquid
-                                                                        praesentium dolorem commodi illo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            {{-- <div class="col-md-6">
-                                                <div class="mu-tab-content-right">
-                                                    <ul class="mu-menu-item-nav">
-                                                        <li>
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    <a href="#">
-                                                                        <img class="media-object"
-                                                                            src="{{ asset('assets/img/menu/item-9.jpg ') }}"
-                                                                            alt="img">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="#">English
-                                                                            Breakfast</a></h4>
-                                                                    <span class="mu-menu-price">$15.85</span>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit. Facere nulla aliquid
-                                                                        praesentium dolorem commodi illo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    <a href="#">
-                                                                        <img class="media-object"
-                                                                            src="{{ asset('assets/img/menu/item-10.jpg ') }}"
-                                                                            alt="img">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="#">Chines
-                                                                            Breakfast</a></h4>
-                                                                    <span class="mu-menu-price">$11.95</span>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit. Facere nulla aliquid
-                                                                        praesentium dolorem commodi illo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="media">
-                                                                <div class="media-left">
-                                                                    <a href="#">
-                                                                        <img class="media-object"
-                                                                            src="{{ asset('assets/img/menu/item-9.jpg ') }}"
-                                                                            alt="img">
-                                                                    </a>
-                                                                </div>
-                                                                <div class="media-body">
-                                                                    <h4 class="media-heading"><a href="#">Indian
-                                                                            Breakfast</a></h4>
-                                                                    <span class="mu-menu-price">$15.85</span>
-                                                                    <p>Lorem ipsum dolor sit amet, consectetur
-                                                                        adipisicing elit. Facere nulla aliquid
-                                                                        praesentium dolorem commodi illo.</p>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div> --}}
-
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
